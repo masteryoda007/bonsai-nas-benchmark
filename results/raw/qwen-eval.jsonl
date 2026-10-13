@@ -1,0 +1,37 @@
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m1","cat":"math","pass":true,"outTokens":51,"tokPerS":17.8,"s":18.1,"answer":"The cost of 3 pencils is $0.75. So, the cost of 12 pencils is $0.75 × (12 ÷ 3) = $3.00. Answer: 3"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m2","cat":"math","pass":true,"outTokens":58,"tokPerS":18.6,"s":4.1,"answer":"The average speed is calculated by dividing the total distance by the total time. Average speed = $ \\frac{180 \\text{ km}}{2.5 \\text{ hours}}"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m3","cat":"math","pass":true,"outTokens":62,"tokPerS":18.6,"s":4.2,"answer":"Let x be the number of marbles Leo has. Mia has 3x marbles. Total marbles: x + 3x = 4x = 48 x = 12 Mia has 36 marbles. Answer: 36"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m4","cat":"math","pass":true,"outTokens":130,"tokPerS":18.2,"s":8,"answer":"Let the width of the rectangle be $ x $ cm. The perimeter of a rectangle is given by $ 2(\\text{length} + \\text{width}) $. So, $ 2(8 + x) = 2"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m5","cat":"math","pass":true,"outTokens":102,"tokPerS":18.1,"s":6.6,"answer":"The collision is perfectly elastic, so the speed after the collision can be calculated using conservation of momentum. Final velocity = (m₁v"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m6","cat":"math","pass":true,"outTokens":68,"tokPerS":18.9,"s":4.6,"answer":"The discounted price is $80 - (25% of $80) = $80 - $20 = $60. The tax is 10% of $60 = $6. Final price = $60 + $6 = $66. Answer: 66"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m7","cat":"math","pass":true,"outTokens":25,"tokPerS":19.1,"s":2.2,"answer":"The number of days required for 6 workers to build the wall is 10. Answer: 10"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m8","cat":"math","pass":true,"outTokens":59,"tokPerS":18.3,"s":4.1,"answer":"The current can be calculated using Ohm's Law: $ I = \\frac{V}{R} $. $ I = \\frac{3.3}{220} = 0.015 $ A = 15 mA. Answer: 15"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m9","cat":"math","pass":true,"outTokens":25,"tokPerS":19.8,"s":2,"answer":"The sum of the interior angles of a hexagon is 720 degrees. Answer: 720"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m10","cat":"math","pass":false,"outTokens":20,"tokPerS":19.7,"s":2.2,"answer":"The car can travel 75 kilometres on a full tank. Answer: 75"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m11","cat":"math","pass":true,"outTokens":51,"tokPerS":18.9,"s":3.6,"answer":"Subtract 2x from both sides: 3x - 2x - 7 = 5 x - 7 = 5 Add 7 to both sides: x = 12 Answer: 12"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"m12","cat":"math","pass":true,"outTokens":93,"tokPerS":17.9,"s":6.2,"answer":"The distance fallen by the ball can be calculated using the equation: $ s = \\frac{1}{2} g t^2 $ Substituting the values: $ s = \\frac{1}{2} \\"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"j1","cat":"extract","pass":true,"outTokens":57,"tokPerS":18.8,"s":4.6,"answer":"{ \"order_id\": 4471, \"customer\": \"Dana Ruiz\", \"date\": \"2026-03-14\", \"quantity\": 3, \"unit_price\": 4.50 }"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"j2","cat":"extract","pass":true,"outTokens":48,"tokPerS":17.8,"s":3.9,"answer":"{ \"board\": \"XIAO ESP32-C3\", \"digital_pins\": 11, \"clock_mhz\": 160, \"sram_kb\": 400 }"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"j3","cat":"extract","pass":true,"outTokens":41,"tokPerS":17.4,"s":3.4,"answer":"{ \"team\": \"robotics team\", \"day\": \"Thursday\", \"time\": \"4:30 pm\", \"room\": \"Room 214\" }"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"j4","cat":"extract","pass":true,"outTokens":88,"tokPerS":18.4,"s":5.6,"answer":"{ \"ingredients\": [ { \"item\": \"flour\", \"amount\": \"2\", \"unit\": \"cup\" }, { \"item\": \"sugar\", \"amount\": \"1\", \"unit\": \"cup\" }, { \"item\": \"eggs\", \""}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"j5","cat":"extract","pass":true,"outTokens":19,"tokPerS":19.7,"s":2.1,"answer":"{\"A\": \"positive\", \"B\": \"negative\", \"C\": \"positive\"}"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"j6","cat":"extract","pass":true,"outTokens":19,"tokPerS":19,"s":1.8,"answer":"{\"metres\": 5000, \"minutes\": 120}"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"j7","cat":"extract","pass":true,"outTokens":16,"tokPerS":20.6,"s":1.4,"answer":"{\"user\": \"alex.chen\", \"domain\": \"example.org\"}"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"j8","cat":"extract","pass":true,"outTokens":42,"tokPerS":17,"s":3.5,"answer":"{\"parts\":[{\"ref\":\"R1\",\"value\":\"10 kOhm\",\"net\":\"SDA\"},{\"ref\":\"C3\",\"value\":\"100 nF\",\"net\":\"3V3\"}]}"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"i1","cat":"instruct","pass":true,"outTokens":6,"tokPerS":23.1,"s":0.9,"answer":"Red Blue Green"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"i2","cat":"instruct","pass":true,"outTokens":17,"tokPerS":19.1,"s":1.5,"answer":"JUPITER IS THE LARGEST PLANET IN OUR SOLAR SYSTEM."}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"i3","cat":"instruct","pass":false,"outTokens":28,"tokPerS":18.3,"s":2.2,"answer":"A ground pour is a thick layer of conductive material applied to the circuit board to provide a low-resistance path for ground signals."}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"i4","cat":"instruct","pass":true,"outTokens":2,"tokPerS":38.5,"s":0.6,"answer":"Yes"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"i5","cat":"instruct","pass":true,"outTokens":8,"tokPerS":21.6,"s":0.9,"answer":"2,4,6,8"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"i6","cat":"instruct","pass":true,"outTokens":13,"tokPerS":20.5,"s":1.2,"answer":"[\"Helium\", \"Neon\", \"Argon\"]"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"i7","cat":"instruct","pass":false,"outTokens":4,"tokPerS":23.6,"s":0.7,"answer":"trucic"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"i8","cat":"instruct","pass":true,"outTokens":5,"tokPerS":22.3,"s":0.9,"answer":"MomentumInAction"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"k1","cat":"know","pass":true,"outTokens":2,"tokPerS":38.5,"s":0.6,"answer":"Na"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"k2","cat":"know","pass":true,"outTokens":5,"tokPerS":23.8,"s":0.7,"answer":"1969"}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"k3","cat":"know","pass":true,"outTokens":14,"tokPerS":20.4,"s":1.1,"answer":"The SI unit of electrical resistance is the ohm (Ω)."}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"k4","cat":"know","pass":true,"outTokens":23,"tokPerS":18.8,"s":1.7,"answer":"The derivative of $ x^3 $ with respect to $ x $ is $ 3x^2 $."}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"k5","cat":"know","pass":true,"outTokens":4,"tokPerS":22.8,"s":1,"answer":"Nitrogen."}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"k6","cat":"know","pass":true,"outTokens":5,"tokPerS":23,"s":0.6,"answer":"Mitochondria."}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"k7","cat":"know","pass":true,"outTokens":5,"tokPerS":23.4,"s":0.7,"answer":"Jane Austen."}
+{"model":"Qwen3 1.7B Q4_K_M (QNAP)","id":"k8","cat":"know","pass":true,"outTokens":18,"tokPerS":20.4,"s":1.4,"answer":"$ 3.00 \\times 10^8 $ metres per second"}
+{"summary":"Qwen3 1.7B Q4_K_M (QNAP)","pass":33,"of":36,"byCat":{"math":{"pass":11,"n":12},"extract":{"pass":8,"n":8},"instruct":{"pass":6,"n":8},"know":{"pass":8,"n":8}},"totalS":109,"avgOutTokens":34.3}

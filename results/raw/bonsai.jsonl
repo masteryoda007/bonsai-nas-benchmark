@@ -1,0 +1,14 @@
+{"test":"prompt-sweep","promptTokens":128,"readTokPerS":11.8,"writeTokPerS":8.5,"generated":64,"totalS":18.2}
+{"test":"prompt-sweep","promptTokens":512,"readTokPerS":10.8,"writeTokPerS":7.6,"generated":64,"totalS":56}
+{"test":"prompt-sweep","promptTokens":1024,"readTokPerS":9.9,"writeTokPerS":6.4,"generated":64,"totalS":113.2}
+{"test":"prompt-sweep","promptTokens":2048,"readTokPerS":8.5,"writeTokPerS":5.1,"generated":64,"totalS":253.6}
+{"test":"write-sweep","generated":32,"writeTokPerS":8.61,"readTokPerS":11.6,"totalS":5.1}
+{"test":"write-sweep","generated":128,"writeTokPerS":8.42,"readTokPerS":11.5,"totalS":16.5}
+{"test":"write-sweep","generated":512,"writeTokPerS":8.06,"readTokPerS":12.3,"totalS":64.7}
+{"test":"time-to-first-token","promptTokens":300,"firstTokenS":26.3,"totalS":30.2}
+{"test":"task","model":"Bonsai-8B Q1_0","id":"json-summary","verdict":"pass","promptTokens":273,"generated":143,"readTokPerS":11.3,"writeTokPerS":8,"totalS":42.7,"sample":"{ \"title\": \"Momentum and Collisions\", \"topics\": [\"Momentum\", \"Conservation of Momentum\", \"Kinetic Energy and Collisions\"], \"summary\": \"Momentum is the product o"}
+{"test":"task","model":"Bonsai-8B Q1_0","id":"json-quiz","verdict":"pass","promptTokens":162,"generated":167,"readTokPerS":11.3,"writeTokPerS":8.3,"totalS":34.4,"sample":"{ \"questions\": [ { \"q\": \"What is momentum?\", \"choices\": [\"Mass times velocity\", \"Force times time\", \"Velocity times mass\", \"Mass times speed\"], \"answer\": 0 }, {"}
+{"test":"task","model":"Bonsai-8B Q1_0","id":"math","verdict":"pass","promptTokens":58,"generated":39,"readTokPerS":11.6,"writeTokPerS":8.9,"totalS":9.3,"sample":"Using conservation of momentum: $(2)(3) = (2 + 2)v \\Rightarrow 6 = 4v \\Rightarrow v = 1.5$ m/s."}
+{"test":"task","model":"Bonsai-8B Q1_0","id":"grammar","verdict":"pass","promptTokens":41,"generated":17,"readTokPerS":12.3,"writeTokPerS":8.5,"totalS":5.3,"sample":"Me and him weren't ready for the test, because the bus was late."}
+{"test":"task","model":"Bonsai-8B Q1_0","id":"instruction","verdict":"pass","promptTokens":45,"generated":46,"readTokPerS":11.8,"writeTokPerS":8.9,"totalS":8.9,"sample":"1. To provide a stable electrical connection between the top and bottom layers 2. To serve as a reference plane for signal integrity and ground return paths 3. "}
+{"done":"bonsai"}

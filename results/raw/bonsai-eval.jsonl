@@ -1,0 +1,37 @@
+{"model":"Bonsai-8B Q1_0","id":"m1","cat":"math","pass":true,"outTokens":86,"tokPerS":8.3,"s":16.9,"answer":"To find the cost of 12 pencils, first determine how many sets of 3 pencils are in 12 pencils: $$ \\frac{12}{3} = 4 $$ Each set of 3 pencils c"}
+{"model":"Bonsai-8B Q1_0","id":"m2","cat":"math","pass":true,"outTokens":66,"tokPerS":8.8,"s":11.8,"answer":"To find the average speed, divide the total distance by the total time: $$ \\text{Average speed} = \\frac{180 \\text{ km}}{2.5 \\text{ hours}} ="}
+{"model":"Bonsai-8B Q1_0","id":"m3","cat":"math","pass":true,"outTokens":119,"tokPerS":8.7,"s":18.4,"answer":"Let the number of marbles Leo has be $ x $. Then Mia has $ 3x $ marbles. Together, they have: $$ x + 3x = 4x $$ We are told that together th"}
+{"model":"Bonsai-8B Q1_0","id":"m4","cat":"math","pass":true,"outTokens":163,"tokPerS":8.6,"s":23.5,"answer":"To find the area of the rectangle, we first determine its width using the perimeter formula: $$ \\text{Perimeter} = 2 \\times (\\text{length} +"}
+{"model":"Bonsai-8B Q1_0","id":"m5","cat":"math","pass":true,"outTokens":105,"tokPerS":8.6,"s":17.5,"answer":"Using the principle of conservation of momentum: $$ m_1 v_1 + m_2 v_2 = (m_1 + m_2) v $$ Substituting the values: $$ 2 \\times 3 + 2 \\times 0"}
+{"model":"Bonsai-8B Q1_0","id":"m6","cat":"math","pass":true,"outTokens":91,"tokPerS":8.7,"s":15.6,"answer":"First, calculate the discount: $80 × 25% = $20 Subtract the discount from the original price: $80 − $20 = $60 Next, calculate the tax: $60 ×"}
+{"model":"Bonsai-8B Q1_0","id":"m7","cat":"math","pass":true,"outTokens":131,"tokPerS":8.6,"s":19.8,"answer":"To solve this, we first determine the total amount of work required to build the wall. If 5 workers can complete the wall in 12 days, the to"}
+{"model":"Bonsai-8B Q1_0","id":"m8","cat":"math","pass":true,"outTokens":86,"tokPerS":8.8,"s":14.8,"answer":"To find the current, use Ohm's Law: $ I = \\frac{V}{R} $. $$ I = \\frac{3.3\\, \\text{V}}{220\\, \\Omega} = 0.015\\, \\text{A} = 15\\, \\text{mA} $$ A"}
+{"model":"Bonsai-8B Q1_0","id":"m9","cat":"math","pass":true,"outTokens":103,"tokPerS":8.2,"s":16,"answer":"The sum of the interior angles of a hexagon is calculated using the formula: $ (n - 2) \\times 180^\\circ $, where $ n $ is the number of side"}
+{"model":"Bonsai-8B Q1_0","id":"m10","cat":"math","pass":true,"outTokens":72,"tokPerS":8.7,"s":13.6,"answer":"To find the distance the car can travel on a full tank, divide the total fuel capacity by the fuel consumption rate: $$ \\frac{45 \\text{ litr"}
+{"model":"Bonsai-8B Q1_0","id":"m11","cat":"math","pass":true,"outTokens":42,"tokPerS":8.4,"s":8.8,"answer":"Subtract 2x from both sides: x - 7 = 5 Add 7 to both sides: x = 12 Answer: 12 /no_think"}
+{"model":"Bonsai-8B Q1_0","id":"m12","cat":"math","pass":true,"outTokens":155,"tokPerS":8.6,"s":23.3,"answer":"The ball falls under gravity, so we use the kinematic equation for distance under constant acceleration: $$ s = ut + \\frac{1}{2}at^2 $$ Wher"}
+{"model":"Bonsai-8B Q1_0","id":"j1","cat":"extract","pass":true,"outTokens":50,"tokPerS":8.6,"s":12.3,"answer":"{\"order_id\": \"4471\", \"customer\": \"Dana Ruiz\", \"date\": \"2026-03-14\", \"quantity\": 3, \"unit_price\": 4.50}"}
+{"model":"Bonsai-8B Q1_0","id":"j2","cat":"extract","pass":true,"outTokens":42,"tokPerS":8.6,"s":11.3,"answer":"{\"board\": \"XIAO ESP32-C3\", \"digital_pins\": 11, \"clock_mhz\": 160, \"sram_kb\": 400}"}
+{"model":"Bonsai-8B Q1_0","id":"j3","cat":"extract","pass":true,"outTokens":35,"tokPerS":7.9,"s":9.4,"answer":"{\"team\": \"robotics team\", \"day\": \"Thursday\", \"time\": \"4:30 pm\", \"room\": \"Room 214\"}"}
+{"model":"Bonsai-8B Q1_0","id":"j4","cat":"extract","pass":true,"outTokens":45,"tokPerS":8.6,"s":9.2,"answer":"{\"ingredients\":[{\"item\":\"flour\",\"amount\":\"2\",\"unit\":\"cups\"},{\"item\":\"sugar\",\"amount\":\"1\",\"unit\":\"cup\"},{\"item\":\"eggs\",\"amount\":\"3\",\"unit\":\"e"}
+{"model":"Bonsai-8B Q1_0","id":"j5","cat":"extract","pass":true,"outTokens":19,"tokPerS":8.9,"s":8.3,"answer":"{\"A\": \"positive\", \"B\": \"negative\", \"C\": \"positive\"}"}
+{"model":"Bonsai-8B Q1_0","id":"j6","cat":"extract","pass":true,"outTokens":19,"tokPerS":9,"s":5.6,"answer":"{\"metres\": 5000, \"minutes\": 120}"}
+{"model":"Bonsai-8B Q1_0","id":"j7","cat":"extract","pass":true,"outTokens":16,"tokPerS":8.2,"s":5.1,"answer":"{\"user\": \"alex.chen\", \"domain\": \"example.org\"}"}
+{"model":"Bonsai-8B Q1_0","id":"j8","cat":"extract","pass":false,"outTokens":11,"tokPerS":9,"s":6.9,"answer":"{\"parts\":[{\"ref\",\"value\",\"net\"}]}"}
+{"model":"Bonsai-8B Q1_0","id":"i1","cat":"instruct","pass":true,"outTokens":6,"tokPerS":8.8,"s":3.4,"answer":"Red Green Blue"}
+{"model":"Bonsai-8B Q1_0","id":"i2","cat":"instruct","pass":true,"outTokens":4,"tokPerS":9.1,"s":2.9,"answer":"JUPITER"}
+{"model":"Bonsai-8B Q1_0","id":"i3","cat":"instruct","pass":false,"outTokens":29,"tokPerS":8.6,"s":6.5,"answer":"A ground pour on a circuit board is a conductive material applied to the board to provide a low resistance path for electrical current to fl"}
+{"model":"Bonsai-8B Q1_0","id":"i4","cat":"instruct","pass":false,"outTokens":3,"tokPerS":7.1,"s":3.6,"answer":"No."}
+{"model":"Bonsai-8B Q1_0","id":"i5","cat":"instruct","pass":true,"outTokens":8,"tokPerS":9,"s":3.7,"answer":"2,4,6,8"}
+{"model":"Bonsai-8B Q1_0","id":"i6","cat":"instruct","pass":true,"outTokens":13,"tokPerS":8.6,"s":4.3,"answer":"[\"Helium\", \"Neon\", \"Argon\"]"}
+{"model":"Bonsai-8B Q1_0","id":"i7","cat":"instruct","pass":false,"outTokens":4,"tokPerS":9.1,"s":2.9,"answer":"tircuit"}
+{"model":"Bonsai-8B Q1_0","id":"i8","cat":"instruct","pass":true,"outTokens":7,"tokPerS":8.2,"s":3.9,"answer":"The Power of Momentum in Action"}
+{"model":"Bonsai-8B Q1_0","id":"k1","cat":"know","pass":true,"outTokens":2,"tokPerS":9.1,"s":2.4,"answer":"Na"}
+{"model":"Bonsai-8B Q1_0","id":"k2","cat":"know","pass":true,"outTokens":5,"tokPerS":9,"s":3.1,"answer":"1969"}
+{"model":"Bonsai-8B Q1_0","id":"k3","cat":"know","pass":true,"outTokens":6,"tokPerS":9.1,"s":2.3,"answer":"Ohm (Ω)"}
+{"model":"Bonsai-8B Q1_0","id":"k4","cat":"know","pass":true,"outTokens":23,"tokPerS":9,"s":4.4,"answer":"The derivative of $ x^3 $ with respect to $ x $ is $ 3x^2 $."}
+{"model":"Bonsai-8B Q1_0","id":"k5","cat":"know","pass":true,"outTokens":4,"tokPerS":9.2,"s":2.2,"answer":"Nitrogen."}
+{"model":"Bonsai-8B Q1_0","id":"k6","cat":"know","pass":true,"outTokens":4,"tokPerS":7.5,"s":2.4,"answer":"Mitochondria"}
+{"model":"Bonsai-8B Q1_0","id":"k7","cat":"know","pass":true,"outTokens":4,"tokPerS":8.9,"s":2.4,"answer":"Jane Austen"}
+{"model":"Bonsai-8B Q1_0","id":"k8","cat":"know","pass":true,"outTokens":13,"tokPerS":8.7,"s":4.2,"answer":"3.00 × 10⁸ m/s"}
+{"summary":"Bonsai-8B Q1_0","pass":32,"of":36,"byCat":{"math":{"pass":12,"n":12},"extract":{"pass":7,"n":8},"instruct":{"pass":5,"n":8},"know":{"pass":8,"n":8}},"totalS":322.7,"avgOutTokens":44.2}

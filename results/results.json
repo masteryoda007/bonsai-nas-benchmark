@@ -1,0 +1,400 @@
+{
+ "setup": {
+  "nas": "QNAP TS-h886, Intel Xeon D-1622 (4 cores / 8 threads, 2.6 GHz base, AVX2, no AVX-512), 2 x 8 GB DDR4 ECC UDIMM at 2133 MT/s, QuTS hero (ZFS), no GPU",
+  "bonsaiServer": "PrismML llama.cpp fork release prism-b10772, CPU build in Docker; llama-server -t 4 -c 8192 --cache-type-k q8_0 --cache-type-v q8_0 --jinja -np 1; 3 GB container memory cap; no published port",
+  "bonsaiModel": "Bonsai-8B-Q1_0.gguf, 1.16 GB file (1,158,654,496 bytes), Apache 2.0; Qwen3-8B architecture, 8.19B parameters; 1 sign bit per weight + FP16 scale per 128 weights = 1.125 bits/weight",
+  "bonsaiMemoryGiB": "1.62-1.81 GiB container RSS during the runs (2.09-2.17 GiB in the 11 Oct run); docker stats read 2.32-2.71 GiB during the stress run (that counter includes some page cache)",
+  "qwenQnap": "Ollama 0.40.3, qwen3:1.7b Q4_K_M (2.0B params, 1.4 GB), think:false",
+  "mac": "MacBook Pro M4 Max, 128 GB, LM Studio: llama.cpp engine for the lmstudio-community GGUF Q4_K_M files (Qwen3 1.7B/4B/8B, Llama 3.2 3B, Gemma 4 E4B and 31B; Gemma sizes include the BF16 vision projector), MLX engine for Qwen3.8 27B (MLX 4-bit); quality only, its speeds are not comparable with the NAS",
+  "eval": "36 auto-checked tasks: 12 math word problems, 8 JSON extractions, 8 instruction-following, 8 short knowledge; greedy (temperature 0), max 512 output tokens; thinking switched off for Qwen-family models including Bonsai (/no_think + enable_thinking false) and in Ollama (think:false); Gemma and Llama had no thinking switch (LM Studio defaults); Qwen3.8 27B and Gemma 4 31B reasoned anyway; answers with <think> blocks stripped before checking",
+  "dates": "speed runs 2026-10-11 and 2026-10-12; quality runs 2026-10-12"
+ },
+ "quality": [
+  {
+   "model": "Qwen3 4B Q4_K_M",
+   "ranOn": "Mac (LM Studio, Apple GPU) - quality only",
+   "fileGB": 2.5,
+   "pass": 35,
+   "of": 36,
+   "byCat": {
+    "math": "12/12",
+    "extract": "8/8",
+    "instruct": "7/8",
+    "know": "8/8"
+   },
+   "avgOutTokens": 58.6,
+   "misses": [
+    "i7: circut"
+   ]
+  },
+  {
+   "model": "Gemma 4 E4B",
+   "ranOn": "Mac (LM Studio, Apple GPU) - quality only",
+   "fileGB": 6.33,
+   "pass": 35,
+   "of": 36,
+   "byCat": {
+    "math": "12/12",
+    "extract": "8/8",
+    "instruct": "7/8",
+    "know": "8/8"
+   },
+   "avgOutTokens": 101.3,
+   "misses": [
+    "i7: tcirruc"
+   ]
+  },
+  {
+   "model": "Qwen3.8 27B",
+   "ranOn": "Mac (LM Studio, Apple GPU) - quality only",
+   "fileGB": 16.08,
+   "pass": 35,
+   "of": 36,
+   "byCat": {
+    "math": "12/12",
+    "extract": "8/8",
+    "instruct": "7/8",
+    "know": "8/8"
+   },
+   "avgOutTokens": 131.6,
+   "misses": [
+    "i8: "
+   ]
+  },
+  {
+   "model": "Gemma 4 31B",
+   "ranOn": "Mac (LM Studio, Apple GPU) - quality only",
+   "fileGB": 19.89,
+   "pass": 34,
+   "of": 36,
+   "byCat": {
+    "math": "11/12",
+    "extract": "8/8",
+    "instruct": "7/8",
+    "know": "8/8"
+   },
+   "avgOutTokens": 219.9,
+   "misses": [
+    "m5: To find the final speed of the carts, we use the principle of conservation of momentum: In",
+    "i7: tuicric"
+   ]
+  },
+  {
+   "model": "Qwen3 1.7B Q4_K_M (QNAP)",
+   "ranOn": "QNAP CPU (Ollama)",
+   "fileGB": 1.4,
+   "pass": 33,
+   "of": 36,
+   "byCat": {
+    "math": "11/12",
+    "extract": "8/8",
+    "instruct": "6/8",
+    "know": "8/8"
+   },
+   "avgOutTokens": 34.2,
+   "misses": [
+    "m10: The car can travel 75 kilometres on a full tank. Answer: 75",
+    "i3: A ground pour is a thick layer of conductive material applied to the circuit board to prov",
+    "i7: trucic"
+   ]
+  },
+  {
+   "model": "Qwen3 8B Q4_K_M",
+   "ranOn": "Mac (LM Studio, Apple GPU) - quality only",
+   "fileGB": 5.03,
+   "pass": 33,
+   "of": 36,
+   "byCat": {
+    "math": "12/12",
+    "extract": "7/8",
+    "instruct": "6/8",
+    "know": "8/8"
+   },
+   "avgOutTokens": 40.2,
+   "misses": [
+    "j8: [ {\"ref\":\"R1\",\"value\":\"10 kOhm\",\"net\":\"SDA\"}, {\"ref\":\"C3\",\"value\":\"100 nF\",\"net\":\"3V3\"} ]",
+    "i3: A ground pour on a circuit board is a copper area that provides a low impedance path for r",
+    "i7: ritcuic"
+   ]
+  },
+  {
+   "model": "Bonsai-8B Q1_0",
+   "ranOn": "QNAP CPU (llama.cpp PrismML fork)",
+   "fileGB": 1.16,
+   "pass": 32,
+   "of": 36,
+   "byCat": {
+    "math": "12/12",
+    "extract": "7/8",
+    "instruct": "5/8",
+    "know": "8/8"
+   },
+   "avgOutTokens": 44.2,
+   "misses": [
+    "j8: {\"parts\":[{\"ref\",\"value\",\"net\"}]}",
+    "i3: A ground pour on a circuit board is a conductive material applied to the board to provide ",
+    "i4: No.",
+    "i7: tircuit"
+   ]
+  },
+  {
+   "model": "Qwen3 1.7B Q4_K_M (Mac)",
+   "ranOn": "Mac (LM Studio, Apple GPU) - quality only",
+   "fileGB": 1.28,
+   "pass": 32,
+   "of": 36,
+   "byCat": {
+    "math": "11/12",
+    "extract": "8/8",
+    "instruct": "5/8",
+    "know": "8/8"
+   },
+   "avgOutTokens": 40.8,
+   "misses": [
+    "m10: The car can travel 75 kilometres on a full tank. Answer: 75",
+    "i1: Red Blue Yellow",
+    "i3: A ground pour is a layer of conductive material applied to the surface of a circuit board ",
+    "i7: circtui"
+   ]
+  },
+  {
+   "model": "Llama 3.2 3B Q4_K_M",
+   "ranOn": "Mac (LM Studio, Apple GPU) - quality only",
+   "fileGB": 2.02,
+   "pass": 28,
+   "of": 36,
+   "byCat": {
+    "math": "12/12",
+    "extract": "5/8",
+    "instruct": "4/8",
+    "know": "7/8"
+   },
+   "avgOutTokens": 41.2,
+   "misses": [
+    "j1: {\"order_id\": null, \"customer\": \"Dana Ruiz\", \"date\": \"2026-03-14\", \"quantity\": 3, \"unit_pri",
+    "j4: {\"ingredients\":[{\"item\":\"flour\",\"amount\":\"2 cups\",\"unit\":\"cups\"},{\"item\":\"sugar\",\"amount\":",
+    "j7: {\"user\": \"alex\", \"domain\": \"example.org\"}",
+    "i1: Red Orange Blue",
+    "i2: JUPITER IS THE LARGEST PLANET IN OUR SOLAR SYSTEM, WITH A DIAMETER OF approximately 142,98",
+    "i4: No",
+    "i7: tciruc",
+    "k8: 299,792 m/s"
+   ]
+  }
+ ],
+ "speed": {
+  "bonsaiPromptSweep": [
+   {
+    "promptTokens": 128,
+    "readTokPerS": 11.8,
+    "writeTokPerS": 8.5,
+    "totalS": 18.2
+   },
+   {
+    "promptTokens": 512,
+    "readTokPerS": 10.8,
+    "writeTokPerS": 7.6,
+    "totalS": 56
+   },
+   {
+    "promptTokens": 1024,
+    "readTokPerS": 9.9,
+    "writeTokPerS": 6.4,
+    "totalS": 113.2
+   },
+   {
+    "promptTokens": 2048,
+    "readTokPerS": 8.5,
+    "writeTokPerS": 5.1,
+    "totalS": 253.6
+   }
+  ],
+  "bonsaiWriteSweep": [
+   {
+    "generated": 32,
+    "writeTokPerS": 8.61,
+    "totalS": 5.1
+   },
+   {
+    "generated": 128,
+    "writeTokPerS": 8.42,
+    "totalS": 16.5
+   },
+   {
+    "generated": 512,
+    "writeTokPerS": 8.06,
+    "totalS": 64.7
+   }
+  ],
+  "bonsaiTimeToFirstToken": {
+   "promptTokens": 300,
+   "firstTokenS": 26.3,
+   "totalS": 30.2
+  },
+  "bonsaiTasks": [
+   {
+    "id": "json-summary",
+    "verdict": "pass",
+    "promptTokens": 273,
+    "generated": 143,
+    "readTokPerS": 11.3,
+    "writeTokPerS": 8,
+    "totalS": 42.7
+   },
+   {
+    "id": "json-quiz",
+    "verdict": "pass",
+    "promptTokens": 162,
+    "generated": 167,
+    "readTokPerS": 11.3,
+    "writeTokPerS": 8.3,
+    "totalS": 34.4
+   },
+   {
+    "id": "math",
+    "verdict": "pass",
+    "promptTokens": 58,
+    "generated": 39,
+    "readTokPerS": 11.6,
+    "writeTokPerS": 8.9,
+    "totalS": 9.3
+   },
+   {
+    "id": "grammar",
+    "verdict": "pass",
+    "promptTokens": 41,
+    "generated": 17,
+    "readTokPerS": 12.3,
+    "writeTokPerS": 8.5,
+    "totalS": 5.3
+   },
+   {
+    "id": "instruction",
+    "verdict": "pass",
+    "promptTokens": 45,
+    "generated": 46,
+    "readTokPerS": 11.8,
+    "writeTokPerS": 8.9,
+    "totalS": 8.9
+   }
+  ],
+  "qwen17Tasks": [
+   {
+    "id": "json-summary",
+    "verdict": "pass",
+    "promptTokens": 277,
+    "generated": 127,
+    "readTokPerS": 66.2,
+    "writeTokPerS": 17.1,
+    "totalS": 12
+   },
+   {
+    "id": "json-quiz",
+    "verdict": "pass",
+    "promptTokens": 170,
+    "generated": 176,
+    "readTokPerS": 62.5,
+    "writeTokPerS": 17.5,
+    "totalS": 12.9
+   },
+   {
+    "id": "math",
+    "verdict": "pass",
+    "promptTokens": 65,
+    "generated": 108,
+    "readTokPerS": 69.7,
+    "writeTokPerS": 17.7,
+    "totalS": 7.4
+   },
+   {
+    "id": "grammar",
+    "verdict": "pass",
+    "promptTokens": 48,
+    "generated": 17,
+    "readTokPerS": 70.6,
+    "writeTokPerS": 20.1,
+    "totalS": 2.1
+   },
+   {
+    "id": "instruction",
+    "verdict": "pass",
+    "promptTokens": 52,
+    "generated": 28,
+    "readTokPerS": 66.1,
+    "writeTokPerS": 19.8,
+    "totalS": 2.2
+   }
+  ],
+  "qwen17LongRead": {
+   "promptTokens": 1285,
+   "readTokPerS": 54,
+   "writeTokPerS": 12.5,
+   "totalS": 28.5
+  },
+  "bonsaiLongPrompt4096": {
+   "promptTokens": 4096,
+   "readTokPerS": 6.1,
+   "writeTokPerS": 2.9,
+   "totalS": 696
+  },
+  "bonsaiConcurrency4": {
+   "wallS": 154,
+   "finishedAfterS": [
+    38.9,
+    77.2,
+    115.7,
+    154
+   ],
+   "allOk": true
+  },
+  "bonsaiSustained": {
+   "requests": 20,
+   "errors": 0,
+   "tokensOut": 5120,
+   "minutes": 10.5,
+   "avgWriteTokPerS": 8.12,
+   "writeTokPerSRange": [
+    8.31,
+    8.64
+   ]
+  }
+ },
+ "otherWebAppDuringLoad": {
+  "checks": 300,
+  "non200": 0,
+  "medianS": 0.03232,
+  "over1s": 7,
+  "over2s": 1,
+  "maxS": 5.028192
+ },
+ "rescored": [
+  {
+   "model": "Gemma 4 E4B",
+   "id": "k8",
+   "was": false,
+   "now": true,
+   "answer": "$3.00 \\times 10^8 \\, \\text{m/s}$"
+  },
+  {
+   "model": "Qwen3 1.7B Q4_K_M (Mac)",
+   "id": "k8",
+   "was": false,
+   "now": true,
+   "answer": "The speed of light in a vacuum is $ 3.00 \\times 10^8 $ metres per second, to thr"
+  },
+  {
+   "model": "Llama 3.2 3B Q4_K_M",
+   "id": "i5",
+   "was": false,
+   "now": true,
+   "answer": "4, 6, 8, 10"
+  }
+ ],
+ "notes": [
+  "Gemma 4 31B m5 hit the 512-token limit before its final answer (counted as a miss, same rule for all).",
+  "k8 check accepts LaTeX \\times; i5 accepts 10 as \"between 1 and 10\" (both fixed after the first runs; rescored from saved answers).",
+  "Gemma 4 fileGB includes the BF16 vision projector (0.99 GB E4B, 1.20 GB 31B).",
+  "Qwen3.8 27B i8 returned an empty answer after 511 tokens (counted as a miss, same rule for all).",
+  "Qwen3.8 27B (thinking-off switches sent) and Gemma 4 31B (no switch) spent 37-206 output tokens on one-word answers, so both reasoned before answering; treat their scores as a reference, not a like-for-like comparison."
+ ]
+}

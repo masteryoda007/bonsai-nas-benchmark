@@ -1,0 +1,259 @@
+{"model":"Qwen3 8B Q4_K_M","id":"m1","cat":"math","pass":true,"outTokens":72,"tokPerS":null,"s":1.2,"answer":"The price for 3 pencils is $0.75, so the price per pencil is $0.75 ÷ 3 = $0.25. For 12 pencils, the cost is 12 × $0.25 = $3.00. Answer: 3.00"}
+{"model":"Qwen3 8B Q4_K_M","id":"m2","cat":"math","pass":true,"outTokens":66,"tokPerS":null,"s":1,"answer":"To find the average speed, divide the total distance by the total time: $ \\text{Average speed} = \\frac{180 \\text{ km}}{2.5 \\text{ hours}} = "}
+{"model":"Qwen3 8B Q4_K_M","id":"m3","cat":"math","pass":true,"outTokens":83,"tokPerS":null,"s":1.2,"answer":"Let the number of marbles Leo has be $ x $. Then Mia has $ 3x $ marbles. Together, they have $ x + 3x = 48 $. $ 4x = 48 $ $ x = 12 $ Mia has"}
+{"model":"Qwen3 8B Q4_K_M","id":"m4","cat":"math","pass":true,"outTokens":112,"tokPerS":null,"s":1.5,"answer":"The formula for the perimeter of a rectangle is $ P = 2(l + w) $. Given $ l = 8 $ cm and $ P = 28 $ cm, we solve for width $ w $: $ 28 = 2(8"}
+{"model":"Qwen3 8B Q4_K_M","id":"m5","cat":"math","pass":true,"outTokens":81,"tokPerS":null,"s":1.1,"answer":"Using conservation of momentum: Initial momentum = (2 kg × 3 m/s) + (2 kg × 0) = 6 kg·m/s Final momentum = (2 kg + 2 kg) × v = 4v So, 4v = 6"}
+{"model":"Qwen3 8B Q4_K_M","id":"m6","cat":"math","pass":true,"outTokens":77,"tokPerS":null,"s":1.1,"answer":"The jacket originally costs $80. After a 25% discount, the price becomes $80 × (1 - 0.25) = $60. Then, a 10% tax is added to the discounted "}
+{"model":"Qwen3 8B Q4_K_M","id":"m7","cat":"math","pass":true,"outTokens":59,"tokPerS":null,"s":0.8,"answer":"The work done is equivalent to 5 workers × 12 days = 60 worker-days. If 6 workers are used, the number of days required is 60 ÷ 6 = 10 days."}
+{"model":"Qwen3 8B Q4_K_M","id":"m8","cat":"math","pass":true,"outTokens":54,"tokPerS":null,"s":0.8,"answer":"Using Ohm's Law $ I = \\frac{V}{R} $, we get $ I = \\frac{3.3}{220} = 0.015 $ A. Answer: 15"}
+{"model":"Qwen3 8B Q4_K_M","id":"m9","cat":"math","pass":true,"outTokens":99,"tokPerS":null,"s":1.4,"answer":"The sum of the interior angles of a hexagon is calculated using the formula $(n-2) \\times 180^\\circ$, where $n$ is the number of sides. For "}
+{"model":"Qwen3 8B Q4_K_M","id":"m10","cat":"math","pass":true,"outTokens":43,"tokPerS":null,"s":0.8,"answer":"The car can travel $ \\frac{45}{6} \\times 100 = 750 $ km on a full tank. Answer: 750"}
+{"model":"Qwen3 8B Q4_K_M","id":"m11","cat":"math","pass":true,"outTokens":42,"tokPerS":null,"s":0.6,"answer":"3x - 7 = 2x + 5 3x - 2x = 5 + 7 x = 12 Answer: 12"}
+{"model":"Qwen3 8B Q4_K_M","id":"m12","cat":"math","pass":true,"outTokens":69,"tokPerS":null,"s":1,"answer":"The distance fallen under gravity is given by $ s = \\frac{1}{2} g t^2 $. Plugging in the values: $ s = \\frac{1}{2} \\times 10 \\times 3^2 = 45"}
+{"model":"Qwen3 8B Q4_K_M","id":"j1","cat":"extract","pass":true,"outTokens":61,"tokPerS":null,"s":0.9,"answer":"{ \"order_id\": 4471, \"customer\": \"Dana Ruiz\", \"date\": \"2026-03-14\", \"quantity\": 3, \"unit_price\": 4.50 }"}
+{"model":"Qwen3 8B Q4_K_M","id":"j2","cat":"extract","pass":true,"outTokens":52,"tokPerS":null,"s":0.8,"answer":"{ \"board\": \"XIAO ESP32-C3\", \"digital_pins\": 11, \"clock_mhz\": 160, \"sram_kb\": 400 }"}
+{"model":"Qwen3 8B Q4_K_M","id":"j3","cat":"extract","pass":true,"outTokens":45,"tokPerS":null,"s":0.7,"answer":"{ \"team\": \"robotics team\", \"day\": \"Thursday\", \"time\": \"4:30 pm\", \"room\": \"Room 214\" }"}
+{"model":"Qwen3 8B Q4_K_M","id":"j4","cat":"extract","pass":true,"outTokens":50,"tokPerS":null,"s":0.7,"answer":"{\"ingredients\":[{\"item\":\"flour\",\"amount\":\"2\",\"unit\":\"cups\"},{\"item\":\"sugar\",\"amount\":\"1\",\"unit\":\"cup\"},{\"item\":\"eggs\",\"amount\":\"3\",\"unit\":\"e"}
+{"model":"Qwen3 8B Q4_K_M","id":"j5","cat":"extract","pass":true,"outTokens":23,"tokPerS":null,"s":0.4,"answer":"{\"A\": \"positive\", \"B\": \"negative\", \"C\": \"positive\"}"}
+{"model":"Qwen3 8B Q4_K_M","id":"j6","cat":"extract","pass":true,"outTokens":23,"tokPerS":null,"s":0.4,"answer":"{\"metres\": 5000, \"minutes\": 120}"}
+{"model":"Qwen3 8B Q4_K_M","id":"j7","cat":"extract","pass":true,"outTokens":20,"tokPerS":null,"s":0.3,"answer":"{\"user\": \"alex.chen\", \"domain\": \"example.org\"}"}
+{"model":"Qwen3 8B Q4_K_M","id":"j8","cat":"extract","pass":false,"outTokens":48,"tokPerS":null,"s":0.7,"answer":"[ {\"ref\":\"R1\",\"value\":\"10 kOhm\",\"net\":\"SDA\"}, {\"ref\":\"C3\",\"value\":\"100 nF\",\"net\":\"3V3\"} ]"}
+{"model":"Qwen3 8B Q4_K_M","id":"i1","cat":"instruct","pass":true,"outTokens":10,"tokPerS":null,"s":0.2,"answer":"Red Green Blue"}
+{"model":"Qwen3 8B Q4_K_M","id":"i2","cat":"instruct","pass":true,"outTokens":8,"tokPerS":null,"s":0.2,"answer":"JUPITER"}
+{"model":"Qwen3 8B Q4_K_M","id":"i3","cat":"instruct","pass":false,"outTokens":31,"tokPerS":null,"s":0.5,"answer":"A ground pour on a circuit board is a copper area that provides a low impedance path for return currents and helps reduce electromagnetic in"}
+{"model":"Qwen3 8B Q4_K_M","id":"i4","cat":"instruct","pass":true,"outTokens":7,"tokPerS":null,"s":0.1,"answer":"Yes."}
+{"model":"Qwen3 8B Q4_K_M","id":"i5","cat":"instruct","pass":true,"outTokens":12,"tokPerS":null,"s":0.2,"answer":"2,4,6,8"}
+{"model":"Qwen3 8B Q4_K_M","id":"i6","cat":"instruct","pass":true,"outTokens":17,"tokPerS":null,"s":0.3,"answer":"[\"Helium\", \"Neon\", \"Argon\"]"}
+{"model":"Qwen3 8B Q4_K_M","id":"i7","cat":"instruct","pass":false,"outTokens":8,"tokPerS":null,"s":0.2,"answer":"ritcuic"}
+{"model":"Qwen3 8B Q4_K_M","id":"i8","cat":"instruct","pass":true,"outTokens":11,"tokPerS":null,"s":0.2,"answer":"The Power Of Momentum In Motion"}
+{"model":"Qwen3 8B Q4_K_M","id":"k1","cat":"know","pass":true,"outTokens":6,"tokPerS":null,"s":0.1,"answer":"Na"}
+{"model":"Qwen3 8B Q4_K_M","id":"k2","cat":"know","pass":true,"outTokens":9,"tokPerS":null,"s":0.2,"answer":"1969"}
+{"model":"Qwen3 8B Q4_K_M","id":"k3","cat":"know","pass":true,"outTokens":18,"tokPerS":null,"s":0.4,"answer":"The SI unit of electrical resistance is the ohm (Ω)."}
+{"model":"Qwen3 8B Q4_K_M","id":"k4","cat":"know","pass":true,"outTokens":27,"tokPerS":null,"s":0.4,"answer":"The derivative of $ x^3 $ with respect to $ x $ is $ 3x^2 $."}
+{"model":"Qwen3 8B Q4_K_M","id":"k5","cat":"know","pass":true,"outTokens":8,"tokPerS":null,"s":0.2,"answer":"Nitrogen."}
+{"model":"Qwen3 8B Q4_K_M","id":"k6","cat":"know","pass":true,"outTokens":24,"tokPerS":null,"s":0.4,"answer":"The mitochondrion (mitochondria in plural) produces most of a cell's ATP."}
+{"model":"Qwen3 8B Q4_K_M","id":"k7","cat":"know","pass":true,"outTokens":22,"tokPerS":null,"s":0.3,"answer":"The novel \"Pride and Prejudice\" was written by Jane Austen."}
+{"model":"Qwen3 8B Q4_K_M","id":"k8","cat":"know","pass":true,"outTokens":51,"tokPerS":null,"s":0.7,"answer":"The speed of light in a vacuum is **299,792,458 m/s**. To three significant figures, this is **3.00 × 10⁸ m/s**."}
+{"summary":"Qwen3 8B Q4_K_M","pass":33,"of":36,"byCat":{"math":{"pass":12,"n":12},"extract":{"pass":7,"n":8},"instruct":{"pass":6,"n":8},"know":{"pass":8,"n":8}},"totalS":21.9,"avgOutTokens":40.2}
+{"model":"Qwen3 4B Q4_K_M","id":"m1","cat":"math","pass":true,"outTokens":67,"tokPerS":null,"s":0.7,"answer":"The cost of 3 pencils is $0.75, so the cost of 1 pencil is $0.75 ÷ 3 = $0.25. The cost of 12 pencils is 12 × $0.25 = $3. Answer: 3"}
+{"model":"Qwen3 4B Q4_K_M","id":"m2","cat":"math","pass":true,"outTokens":102,"tokPerS":null,"s":0.9,"answer":"To find the average speed, we use the formula: $$ \\text{Average speed} = \\frac{\\text{Total distance}}{\\text{Total time}} $$ Given: - Total d"}
+{"model":"Qwen3 4B Q4_K_M","id":"m3","cat":"math","pass":true,"outTokens":140,"tokPerS":null,"s":1.2,"answer":"Let $ m $ represent the number of marbles Mia has, and $ l $ represent the number of marbles Leo has. From the problem, we know: 1. $ m = 3l"}
+{"model":"Qwen3 4B Q4_K_M","id":"m4","cat":"math","pass":true,"outTokens":209,"tokPerS":null,"s":1.7,"answer":"To find the area of the rectangle, we first need to determine the width. The formula for the perimeter of a rectangle is: $$ \\text{Perimeter"}
+{"model":"Qwen3 4B Q4_K_M","id":"m5","cat":"math","pass":true,"outTokens":145,"tokPerS":null,"s":1.2,"answer":"Using conservation of momentum: Initial momentum = $ (2 \\, \\text{kg})(3 \\, \\text{m/s}) + (2 \\, \\text{kg})(0) = 6 \\, \\text{kg} \\cdot \\text{m/"}
+{"model":"Qwen3 4B Q4_K_M","id":"m6","cat":"math","pass":true,"outTokens":104,"tokPerS":null,"s":0.9,"answer":"The jacket is discounted by 25%, so the discount amount is $80 \\times 0.25 = 20$. The discounted price is $80 - 20 = 60$. A 10% tax is added"}
+{"model":"Qwen3 4B Q4_K_M","id":"m7","cat":"math","pass":true,"outTokens":170,"tokPerS":null,"s":1.4,"answer":"To solve this problem, we first find the total amount of work required to build the wall. If 5 workers can complete the job in 12 days, the "}
+{"model":"Qwen3 4B Q4_K_M","id":"m8","cat":"math","pass":true,"outTokens":131,"tokPerS":null,"s":1.1,"answer":"To find the current flowing through the resistor, we use Ohm's Law: $ I = \\frac{V}{R} $. Given: - Voltage ($ V $) = 3.3 V - Resistance ($ R "}
+{"model":"Qwen3 4B Q4_K_M","id":"m9","cat":"math","pass":true,"outTokens":102,"tokPerS":null,"s":0.9,"answer":"The sum of the interior angles of a polygon can be calculated using the formula $ (n - 2) \\times 180^\\circ $, where $ n $ is the number of s"}
+{"model":"Qwen3 4B Q4_K_M","id":"m10","cat":"math","pass":true,"outTokens":128,"tokPerS":null,"s":1.1,"answer":"To find out how many kilometers the car can travel on a full tank, we can use the formula: $$ \\text{Distance} = \\left( \\frac{\\text{Fuel capa"}
+{"model":"Qwen3 4B Q4_K_M","id":"m11","cat":"math","pass":true,"outTokens":70,"tokPerS":null,"s":0.6,"answer":"To solve $ 3x - 7 = 2x + 5 $, first subtract $ 2x $ from both sides: $$ x - 7 = 5 $$ Next, add 7 to both sides: $$ x = 12 $$ Answer: 12"}
+{"model":"Qwen3 4B Q4_K_M","id":"m12","cat":"math","pass":true,"outTokens":160,"tokPerS":null,"s":1.4,"answer":"To find the distance fallen by the ball, we use the equation of motion for an object under constant acceleration (gravity): $$ s = ut + \\fra"}
+{"model":"Qwen3 4B Q4_K_M","id":"j1","cat":"extract","pass":true,"outTokens":60,"tokPerS":null,"s":0.6,"answer":"{ \"order_id\": 4471, \"customer\": \"Dana Ruiz\", \"date\": \"2026-03-14\", \"quantity\": 3, \"unit_price\": 4.5 }"}
+{"model":"Qwen3 4B Q4_K_M","id":"j2","cat":"extract","pass":true,"outTokens":52,"tokPerS":null,"s":0.5,"answer":"{ \"board\": \"XIAO ESP32-C3\", \"digital_pins\": 11, \"clock_mhz\": 160, \"sram_kb\": 400 }"}
+{"model":"Qwen3 4B Q4_K_M","id":"j3","cat":"extract","pass":true,"outTokens":44,"tokPerS":null,"s":0.4,"answer":"{ \"team\": \"robotics\", \"day\": \"Thursday\", \"time\": \"4:30 pm\", \"room\": \"Room 214\" }"}
+{"model":"Qwen3 4B Q4_K_M","id":"j4","cat":"extract","pass":true,"outTokens":50,"tokPerS":null,"s":0.5,"answer":"{\"ingredients\":[{\"item\":\"flour\",\"amount\":\"2\",\"unit\":\"cups\"},{\"item\":\"sugar\",\"amount\":\"1\",\"unit\":\"cup\"},{\"item\":\"eggs\",\"amount\":\"3\",\"unit\":\"e"}
+{"model":"Qwen3 4B Q4_K_M","id":"j5","cat":"extract","pass":true,"outTokens":23,"tokPerS":null,"s":0.3,"answer":"{\"A\": \"positive\", \"B\": \"negative\", \"C\": \"positive\"}"}
+{"model":"Qwen3 4B Q4_K_M","id":"j6","cat":"extract","pass":true,"outTokens":23,"tokPerS":null,"s":0.3,"answer":"{\"metres\": 5000, \"minutes\": 120}"}
+{"model":"Qwen3 4B Q4_K_M","id":"j7","cat":"extract","pass":true,"outTokens":20,"tokPerS":null,"s":0.2,"answer":"{\"user\": \"alex.chen\", \"domain\": \"example.org\"}"}
+{"model":"Qwen3 4B Q4_K_M","id":"j8","cat":"extract","pass":true,"outTokens":46,"tokPerS":null,"s":0.5,"answer":"{\"parts\":[{\"ref\":\"R1\",\"value\":\"10 kOhm\",\"net\":\"SDA\"},{\"ref\":\"C3\",\"value\":\"100 nF\",\"net\":\"3V3\"}]}"}
+{"model":"Qwen3 4B Q4_K_M","id":"i1","cat":"instruct","pass":true,"outTokens":10,"tokPerS":null,"s":0.1,"answer":"Red Green Blue"}
+{"model":"Qwen3 4B Q4_K_M","id":"i2","cat":"instruct","pass":true,"outTokens":8,"tokPerS":null,"s":0.1,"answer":"JUPITER"}
+{"model":"Qwen3 4B Q4_K_M","id":"i3","cat":"instruct","pass":true,"outTokens":23,"tokPerS":null,"s":0.3,"answer":"A ground pour is a conductive layer on a circuit board that connects all ground points."}
+{"model":"Qwen3 4B Q4_K_M","id":"i4","cat":"instruct","pass":true,"outTokens":7,"tokPerS":null,"s":0.1,"answer":"Yes."}
+{"model":"Qwen3 4B Q4_K_M","id":"i5","cat":"instruct","pass":true,"outTokens":12,"tokPerS":null,"s":0.1,"answer":"2,4,6,8"}
+{"model":"Qwen3 4B Q4_K_M","id":"i6","cat":"instruct","pass":true,"outTokens":17,"tokPerS":null,"s":0.2,"answer":"[\"Helium\", \"Neon\", \"Argon\"]"}
+{"model":"Qwen3 4B Q4_K_M","id":"i7","cat":"instruct","pass":false,"outTokens":7,"tokPerS":null,"s":0.1,"answer":"circut"}
+{"model":"Qwen3 4B Q4_K_M","id":"i8","cat":"instruct","pass":true,"outTokens":9,"tokPerS":null,"s":0.1,"answer":"Momentum in Motion"}
+{"model":"Qwen3 4B Q4_K_M","id":"k1","cat":"know","pass":true,"outTokens":6,"tokPerS":null,"s":0.1,"answer":"Na"}
+{"model":"Qwen3 4B Q4_K_M","id":"k2","cat":"know","pass":true,"outTokens":9,"tokPerS":null,"s":0.1,"answer":"1969"}
+{"model":"Qwen3 4B Q4_K_M","id":"k3","cat":"know","pass":true,"outTokens":22,"tokPerS":null,"s":0.2,"answer":"The SI unit of electrical resistance is the ohm, symbolized by Ω."}
+{"model":"Qwen3 4B Q4_K_M","id":"k4","cat":"know","pass":true,"outTokens":27,"tokPerS":null,"s":0.3,"answer":"The derivative of $ x^3 $ with respect to $ x $ is $ 3x^2 $."}
+{"model":"Qwen3 4B Q4_K_M","id":"k5","cat":"know","pass":true,"outTokens":8,"tokPerS":null,"s":0.1,"answer":"Nitrogen."}
+{"model":"Qwen3 4B Q4_K_M","id":"k6","cat":"know","pass":true,"outTokens":23,"tokPerS":null,"s":0.2,"answer":"The organelle that produces most of a cell's ATP is the mitochondrion."}
+{"model":"Qwen3 4B Q4_K_M","id":"k7","cat":"know","pass":true,"outTokens":22,"tokPerS":null,"s":0.2,"answer":"The novel \"Pride and Prejudice\" was written by Jane Austen."}
+{"model":"Qwen3 4B Q4_K_M","id":"k8","cat":"know","pass":true,"outTokens":52,"tokPerS":null,"s":0.5,"answer":"The speed of light in a vacuum is **299,792,458 metres per second**. To three significant figures, this is **3.00 × 10⁸ m/s**."}
+{"summary":"Qwen3 4B Q4_K_M","pass":35,"of":36,"byCat":{"math":{"pass":12,"n":12},"extract":{"pass":8,"n":8},"instruct":{"pass":7,"n":8},"know":{"pass":8,"n":8}},"totalS":19,"avgOutTokens":58.6}
+{"model":"Gemma 4 E4B","id":"m1","cat":"math","pass":true,"outTokens":131,"tokPerS":null,"s":2.1,"answer":"Answer: 3.00"}
+{"model":"Gemma 4 E4B","id":"m2","cat":"math","pass":true,"outTokens":175,"tokPerS":null,"s":2.1,"answer":"Average Speed = Distance / Time Average Speed = $180 \\text{ km} / 2.5 \\text{ hours}$ Average Speed = $72 \\text{ km/h}$ Answer: 72"}
+{"model":"Gemma 4 E4B","id":"m3","cat":"math","pass":true,"outTokens":202,"tokPerS":null,"s":2.4,"answer":"Answer: 36"}
+{"model":"Gemma 4 E4B","id":"m4","cat":"math","pass":true,"outTokens":192,"tokPerS":null,"s":2.3,"answer":"Answer: 48"}
+{"model":"Gemma 4 E4B","id":"m5","cat":"math","pass":true,"outTokens":347,"tokPerS":null,"s":4.3,"answer":"Answer: 1.5"}
+{"model":"Gemma 4 E4B","id":"m6","cat":"math","pass":true,"outTokens":386,"tokPerS":null,"s":4.6,"answer":"The original price of the jacket is $80. 1. **Calculate the discount:** Discount amount = $80 \\times 25\\% = $80 \\times 0.25 = $20$. Discount"}
+{"model":"Gemma 4 E4B","id":"m7","cat":"math","pass":true,"outTokens":207,"tokPerS":null,"s":2.6,"answer":"Answer: 10"}
+{"model":"Gemma 4 E4B","id":"m8","cat":"math","pass":true,"outTokens":188,"tokPerS":null,"s":2.2,"answer":"Answer: 15"}
+{"model":"Gemma 4 E4B","id":"m9","cat":"math","pass":true,"outTokens":207,"tokPerS":null,"s":2.5,"answer":"The sum of the interior angles of an $n$-sided polygon is given by the formula $(n-2) \\times 180^\\circ$. For a hexagon, $n=6$. Sum $= (6 - 2"}
+{"model":"Gemma 4 E4B","id":"m10","cat":"math","pass":true,"outTokens":392,"tokPerS":null,"s":4.6,"answer":"Answer: 750"}
+{"model":"Gemma 4 E4B","id":"m11","cat":"math","pass":true,"outTokens":165,"tokPerS":null,"s":2,"answer":"Answer: 12"}
+{"model":"Gemma 4 E4B","id":"m12","cat":"math","pass":true,"outTokens":204,"tokPerS":null,"s":2.4,"answer":"Answer: 45"}
+{"model":"Gemma 4 E4B","id":"j1","cat":"extract","pass":true,"outTokens":50,"tokPerS":null,"s":0.7,"answer":"{\"order_id\": 4471, \"customer\": \"Dana Ruiz\", \"date\": \"2026-03-14\", \"quantity\": 3, \"unit_price\": 4.5}"}
+{"model":"Gemma 4 E4B","id":"j2","cat":"extract","pass":true,"outTokens":46,"tokPerS":null,"s":0.6,"answer":"{\"board\": \"XIAO ESP32-C3\", \"digital_pins\": 11, \"clock_mhz\": 160, \"sram_kb\": 400}"}
+{"model":"Gemma 4 E4B","id":"j3","cat":"extract","pass":true,"outTokens":50,"tokPerS":null,"s":0.7,"answer":"```json { \"team\": \"robotics\", \"day\": \"Thursday\", \"time\": \"4:30 pm\", \"room\": \"Room 214\" } ```"}
+{"model":"Gemma 4 E4B","id":"j4","cat":"extract","pass":true,"outTokens":58,"tokPerS":null,"s":0.8,"answer":"{\"ingredients\": [{\"item\": \"flour\", \"amount\": \"2\", \"unit\": \"cups\"}, {\"item\": \"sugar\", \"amount\": \"1\", \"unit\": \"cup\"}, {\"item\": \"eggs\", \"amount"}
+{"model":"Gemma 4 E4B","id":"j5","cat":"extract","pass":true,"outTokens":16,"tokPerS":null,"s":0.3,"answer":"{\"A\":\"positive\", \"B\":\"negative\", \"C\":\"positive\"}"}
+{"model":"Gemma 4 E4B","id":"j6","cat":"extract","pass":true,"outTokens":19,"tokPerS":null,"s":0.3,"answer":"{\"metres\": 5000, \"minutes\": 120}"}
+{"model":"Gemma 4 E4B","id":"j7","cat":"extract","pass":true,"outTokens":17,"tokPerS":null,"s":0.3,"answer":"{\"user\": \"alex.chen\", \"domain\": \"example.org\"}"}
+{"model":"Gemma 4 E4B","id":"j8","cat":"extract","pass":true,"outTokens":486,"tokPerS":null,"s":6.1,"answer":"```json { \"parts\": [ { \"ref\": \"R1\", \"value\": \"10 kOhm\", \"net\": \"SDA\" }, { \"ref\": \"C3\", \"value\": \"100 nF\", \"net\": \"3V3\" } ] } ```"}
+{"model":"Gemma 4 E4B","id":"i1","cat":"instruct","pass":true,"outTokens":6,"tokPerS":null,"s":0.2,"answer":"Red Green Blue"}
+{"model":"Gemma 4 E4B","id":"i2","cat":"instruct","pass":true,"outTokens":4,"tokPerS":null,"s":0.1,"answer":"JUPITER"}
+{"model":"Gemma 4 E4B","id":"i3","cat":"instruct","pass":true,"outTokens":15,"tokPerS":null,"s":0.3,"answer":"A ground pour connects copper areas providing low impedance return paths for signals."}
+{"model":"Gemma 4 E4B","id":"i4","cat":"instruct","pass":true,"outTokens":2,"tokPerS":null,"s":0.1,"answer":"Yes"}
+{"model":"Gemma 4 E4B","id":"i5","cat":"instruct","pass":true,"outTokens":8,"tokPerS":null,"s":0.2,"answer":"2,4,6,8"}
+{"model":"Gemma 4 E4B","id":"i6","cat":"instruct","pass":true,"outTokens":12,"tokPerS":null,"s":0.2,"answer":"[\"Helium\", \"Neon\", \"Argon\"]"}
+{"model":"Gemma 4 E4B","id":"i7","cat":"instruct","pass":false,"outTokens":4,"tokPerS":null,"s":0.1,"answer":"tcirruc"}
+{"model":"Gemma 4 E4B","id":"i8","cat":"instruct","pass":true,"outTokens":7,"tokPerS":null,"s":0.2,"answer":"The Physics Of Motion And Momentum"}
+{"model":"Gemma 4 E4B","id":"k1","cat":"know","pass":true,"outTokens":2,"tokPerS":null,"s":0.1,"answer":"Na"}
+{"model":"Gemma 4 E4B","id":"k2","cat":"know","pass":true,"outTokens":5,"tokPerS":null,"s":0.1,"answer":"1969"}
+{"model":"Gemma 4 E4B","id":"k3","cat":"know","pass":true,"outTokens":6,"tokPerS":null,"s":0.2,"answer":"Ohm ($\\Omega$)"}
+{"model":"Gemma 4 E4B","id":"k4","cat":"know","pass":true,"outTokens":7,"tokPerS":null,"s":0.2,"answer":"$3x^2$"}
+{"model":"Gemma 4 E4B","id":"k5","cat":"know","pass":true,"outTokens":3,"tokPerS":null,"s":0.1,"answer":"Nitrogen"}
+{"model":"Gemma 4 E4B","id":"k6","cat":"know","pass":true,"outTokens":4,"tokPerS":null,"s":0.1,"answer":"Mitochondria"}
+{"model":"Gemma 4 E4B","id":"k7","cat":"know","pass":true,"outTokens":3,"tokPerS":null,"s":0.1,"answer":"Jane Austen"}
+{"model":"Gemma 4 E4B","id":"k8","cat":"know","pass":false,"outTokens":21,"tokPerS":null,"s":0.3,"answer":"$3.00 \\times 10^8 \\, \\text{m/s}$"}
+{"summary":"Gemma 4 E4B","pass":34,"of":36,"byCat":{"math":{"pass":12,"n":12},"extract":{"pass":8,"n":8},"instruct":{"pass":7,"n":8},"know":{"pass":7,"n":8}},"totalS":46.3,"avgOutTokens":101.3}
+{"model":"Qwen3.8 27B","id":"m1","cat":"math","pass":true,"outTokens":169,"tokPerS":null,"s":9.9,"answer":"Answer: 3"}
+{"model":"Qwen3.8 27B","id":"m2","cat":"math","pass":true,"outTokens":103,"tokPerS":null,"s":5.5,"answer":"Answer: 72"}
+{"model":"Qwen3.8 27B","id":"m3","cat":"math","pass":true,"outTokens":64,"tokPerS":null,"s":3.7,"answer":"Answer: 36"}
+{"model":"Qwen3.8 27B","id":"m4","cat":"math","pass":true,"outTokens":73,"tokPerS":null,"s":4.6,"answer":"Answer: 48"}
+{"model":"Qwen3.8 27B","id":"m5","cat":"math","pass":true,"outTokens":131,"tokPerS":null,"s":7.2,"answer":"Answer: 1.5"}
+{"model":"Qwen3.8 27B","id":"m6","cat":"math","pass":true,"outTokens":83,"tokPerS":null,"s":5.1,"answer":"Answer: 66"}
+{"model":"Qwen3.8 27B","id":"m7","cat":"math","pass":true,"outTokens":132,"tokPerS":null,"s":8,"answer":"5 workers × 12 days = 60 worker-days. 6 workers: 60 ÷ 6 = 10 days. Answer: 10"}
+{"model":"Qwen3.8 27B","id":"m8","cat":"math","pass":true,"outTokens":136,"tokPerS":null,"s":8.3,"answer":"Answer: 15"}
+{"model":"Qwen3.8 27B","id":"m9","cat":"math","pass":true,"outTokens":55,"tokPerS":null,"s":4,"answer":"Answer: 720"}
+{"model":"Qwen3.8 27B","id":"m10","cat":"math","pass":true,"outTokens":109,"tokPerS":null,"s":7.3,"answer":"Answer: 750"}
+{"model":"Qwen3.8 27B","id":"m11","cat":"math","pass":true,"outTokens":61,"tokPerS":null,"s":4.6,"answer":"Answer: 12"}
+{"model":"Qwen3.8 27B","id":"m12","cat":"math","pass":true,"outTokens":97,"tokPerS":null,"s":6.6,"answer":"Answer: 45"}
+{"model":"Qwen3.8 27B","id":"j1","cat":"extract","pass":true,"outTokens":169,"tokPerS":null,"s":11.1,"answer":"{ \"order_id\": 4471, \"customer\": \"Dana Ruiz\", \"date\": \"2026-03-14\", \"quantity\": 3, \"unit_price\": 4.50 }"}
+{"model":"Qwen3.8 27B","id":"j2","cat":"extract","pass":true,"outTokens":152,"tokPerS":null,"s":10.8,"answer":"{ \"board\": \"XIAO ESP32-C3\", \"digital_pins\": 11, \"clock_mhz\": 160, \"sram_kb\": 400 }"}
+{"model":"Qwen3.8 27B","id":"j3","cat":"extract","pass":true,"outTokens":190,"tokPerS":null,"s":12.3,"answer":"{ \"team\": \"robotics team\", \"day\": \"Thursday\", \"time\": \"4:30 pm\", \"room\": \"Room 214\" }"}
+{"model":"Qwen3.8 27B","id":"j4","cat":"extract","pass":true,"outTokens":395,"tokPerS":null,"s":23.7,"answer":"{\"ingredients\":[{\"item\":\"flour\",\"amount\":2,\"unit\":\"cups\"},{\"item\":\"sugar\",\"amount\":1,\"unit\":\"cup\"},{\"item\":\"eggs\",\"amount\":3,\"unit\":null}]}"}
+{"model":"Qwen3.8 27B","id":"j5","cat":"extract","pass":true,"outTokens":39,"tokPerS":null,"s":3.1,"answer":"{\"A\":\"positive\",\"B\":\"negative\",\"C\":\"positive\"}"}
+{"model":"Qwen3.8 27B","id":"j6","cat":"extract","pass":true,"outTokens":92,"tokPerS":null,"s":6.6,"answer":"{\"metres\": 5000, \"minutes\": 120}"}
+{"model":"Qwen3.8 27B","id":"j7","cat":"extract","pass":true,"outTokens":82,"tokPerS":null,"s":5.6,"answer":"{\"user\":\"alex.chen\",\"domain\":\"example.org\"}"}
+{"model":"Qwen3.8 27B","id":"j8","cat":"extract","pass":true,"outTokens":229,"tokPerS":null,"s":13.9,"answer":"{\"parts\":[{\"ref\":\"R1\",\"value\":\"10 kOhm\",\"net\":\"SDA\"},{\"ref\":\"C3\",\"value\":\"100 nF\",\"net\":\"3V3\"}]}"}
+{"model":"Qwen3.8 27B","id":"i1","cat":"instruct","pass":true,"outTokens":122,"tokPerS":null,"s":7.3,"answer":"Red Green Blue"}
+{"model":"Qwen3.8 27B","id":"i2","cat":"instruct","pass":true,"outTokens":59,"tokPerS":null,"s":3.9,"answer":"JUPITER"}
+{"model":"Qwen3.8 27B","id":"i3","cat":"instruct","pass":true,"outTokens":239,"tokPerS":null,"s":13.5,"answer":"A ground pour is a filled copper region on a board connected to the ground net."}
+{"model":"Qwen3.8 27B","id":"i4","cat":"instruct","pass":true,"outTokens":63,"tokPerS":null,"s":4.4,"answer":"Yes"}
+{"model":"Qwen3.8 27B","id":"i5","cat":"instruct","pass":true,"outTokens":196,"tokPerS":null,"s":10.6,"answer":"2,4,6,8"}
+{"model":"Qwen3.8 27B","id":"i6","cat":"instruct","pass":true,"outTokens":90,"tokPerS":null,"s":5.3,"answer":"[\"Helium\", \"Neon\", \"Argon\"]"}
+{"model":"Qwen3.8 27B","id":"i7","cat":"instruct","pass":true,"outTokens":179,"tokPerS":null,"s":10.3,"answer":"tiucric"}
+{"model":"Qwen3.8 27B","id":"i8","cat":"instruct","pass":false,"outTokens":511,"tokPerS":null,"s":26.4,"answer":""}
+{"model":"Qwen3.8 27B","id":"k1","cat":"know","pass":true,"outTokens":47,"tokPerS":null,"s":2.8,"answer":"Na"}
+{"model":"Qwen3.8 27B","id":"k2","cat":"know","pass":true,"outTokens":206,"tokPerS":null,"s":10.7,"answer":"1969"}
+{"model":"Qwen3.8 27B","id":"k3","cat":"know","pass":true,"outTokens":68,"tokPerS":null,"s":4,"answer":"The SI unit of electrical resistance is the **ohm (Ω)**."}
+{"model":"Qwen3.8 27B","id":"k4","cat":"know","pass":true,"outTokens":63,"tokPerS":null,"s":3.7,"answer":"3x^2"}
+{"model":"Qwen3.8 27B","id":"k5","cat":"know","pass":true,"outTokens":77,"tokPerS":null,"s":4.4,"answer":"Nitrogen (about 78%)"}
+{"model":"Qwen3.8 27B","id":"k6","cat":"know","pass":true,"outTokens":55,"tokPerS":null,"s":3.2,"answer":"Mitochondrion"}
+{"model":"Qwen3.8 27B","id":"k7","cat":"know","pass":true,"outTokens":56,"tokPerS":null,"s":3.4,"answer":"Jane Austen"}
+{"model":"Qwen3.8 27B","id":"k8","cat":"know","pass":true,"outTokens":144,"tokPerS":null,"s":7.8,"answer":"3.00 × 10⁸ m/s"}
+{"summary":"Qwen3.8 27B","pass":35,"of":36,"byCat":{"math":{"pass":12,"n":12},"extract":{"pass":8,"n":8},"instruct":{"pass":7,"n":8},"know":{"pass":8,"n":8}},"totalS":283.6,"avgOutTokens":131.6}
+{"model":"Gemma 4 31B","id":"m1","cat":"math","pass":true,"outTokens":397,"tokPerS":null,"s":30.3,"answer":"To find the cost of 12 pencils: 1. Determine the price per pencil: $0.75 ÷ 3 = $0.25 per pencil. 2. Multiply the unit price by the quantity "}
+{"model":"Gemma 4 31B","id":"m2","cat":"math","pass":true,"outTokens":255,"tokPerS":null,"s":21.1,"answer":"To find the average speed of the train, use the formula: Average Speed = Total Distance / Total Time Given: Distance = 180 km Time = 2.5 hou"}
+{"model":"Gemma 4 31B","id":"m3","cat":"math","pass":true,"outTokens":292,"tokPerS":null,"s":25,"answer":"Let Leo's marbles be $x$. Then Mia has $3x$ marbles. Together they have: $x + 3x = 48$ $4x = 48$ $x = 12$ Mia has $3 \\times 12 = 36$ marbles"}
+{"model":"Gemma 4 31B","id":"m4","cat":"math","pass":true,"outTokens":279,"tokPerS":null,"s":24.1,"answer":"To find the area of the rectangle, first determine its width using the perimeter formula: Perimeter $P = 2(\\text{length} + \\text{width})$ $2"}
+{"model":"Gemma 4 31B","id":"m5","cat":"math","pass":false,"outTokens":512,"tokPerS":null,"s":45,"answer":"To find the final speed of the carts, we use the principle of conservation of momentum: Initial Momentum = Final Momentum $(m_1 \\cdot v_{1i}"}
+{"model":"Gemma 4 31B","id":"m6","cat":"math","pass":true,"outTokens":300,"tokPerS":null,"s":29.7,"answer":"Original price: $80 Discounted price: $80 - (0.25 * $80) = $80 - $20 = $60 Final price with tax: $60 + (0.10 * $60) = $60 + $6 = $66 Answer:"}
+{"model":"Gemma 4 31B","id":"m7","cat":"math","pass":true,"outTokens":246,"tokPerS":null,"s":21.7,"answer":"To find the number of days, calculate the total work in worker-days: 5 workers × 12 days = 60 worker-days. Now, divide the total work by the"}
+{"model":"Gemma 4 31B","id":"m8","cat":"math","pass":true,"outTokens":283,"tokPerS":null,"s":27,"answer":"Using Ohm's Law ($I = V / R$): $I = 3.3\\text{V} / 220\\Omega$ $I = 0.015\\text{A}$ To convert amperes to milliamps: $0.015\\text{A} \\times 1000"}
+{"model":"Gemma 4 31B","id":"m9","cat":"math","pass":true,"outTokens":280,"tokPerS":null,"s":27.3,"answer":"The sum of the interior angles of a polygon is calculated using the formula $(n - 2) \\times 180^\\circ$, where $n$ is the number of sides. Fo"}
+{"model":"Gemma 4 31B","id":"m10","cat":"math","pass":true,"outTokens":204,"tokPerS":null,"s":19.6,"answer":"To find the distance the car can travel, divide the total fuel capacity by the consumption rate per kilometer: 1. Fuel efficiency: 6 litres "}
+{"model":"Gemma 4 31B","id":"m11","cat":"math","pass":true,"outTokens":251,"tokPerS":null,"s":21.8,"answer":"3x - 7 = 2x + 5 Subtract 2x from both sides: x - 7 = 5 Add 7 to both sides: x = 12 Answer: 12"}
+{"model":"Gemma 4 31B","id":"m12","cat":"math","pass":true,"outTokens":366,"tokPerS":null,"s":32.6,"answer":"To find the distance a ball falls from rest, we use the formula for displacement under constant acceleration: $d = v_0t + \\frac{1}{2}gt^2$ G"}
+{"model":"Gemma 4 31B","id":"j1","cat":"extract","pass":true,"outTokens":296,"tokPerS":null,"s":25.3,"answer":"```json { \"order_id\": 4471, \"customer\": \"Dana Ruiz\", \"date\": \"2026-03-14\", \"quantity\": 3, \"unit_price\": 4.50 } ```"}
+{"model":"Gemma 4 31B","id":"j2","cat":"extract","pass":true,"outTokens":273,"tokPerS":null,"s":24.2,"answer":"```json { \"board\": \"XIAO ESP32-C3\", \"digital_pins\": 11, \"clock_mhz\": 160, \"sram_kb\": 400 } ```"}
+{"model":"Gemma 4 31B","id":"j3","cat":"extract","pass":true,"outTokens":233,"tokPerS":null,"s":20.3,"answer":"```json { \"team\": \"robotics team\", \"day\": \"Thursday\", \"time\": \"4:30 pm\", \"room\": \"Room 214\" } ```"}
+{"model":"Gemma 4 31B","id":"j4","cat":"extract","pass":true,"outTokens":394,"tokPerS":null,"s":33.4,"answer":"```json { \"ingredients\": [ { \"item\": \"flour\", \"amount\": \"2\", \"unit\": \"cups\" }, { \"item\": \"sugar\", \"amount\": \"1\", \"unit\": \"cup\" }, { \"item\": "}
+{"model":"Gemma 4 31B","id":"j5","cat":"extract","pass":true,"outTokens":168,"tokPerS":null,"s":16.2,"answer":"```json {\"A\": \"positive\", \"B\": \"negative\", \"C\": \"positive\"} ```"}
+{"model":"Gemma 4 31B","id":"j6","cat":"extract","pass":true,"outTokens":176,"tokPerS":null,"s":18.2,"answer":"```json {\"metres\": 5000, \"minutes\": 120} ```"}
+{"model":"Gemma 4 31B","id":"j7","cat":"extract","pass":true,"outTokens":155,"tokPerS":null,"s":14.6,"answer":"```json { \"user\": \"alex.chen\", \"domain\": \"example.org\" } ```"}
+{"model":"Gemma 4 31B","id":"j8","cat":"extract","pass":true,"outTokens":406,"tokPerS":null,"s":34.9,"answer":"```json { \"parts\": [ { \"ref\": \"R1\", \"value\": \"10 kOhm\", \"net\": \"SDA\" }, { \"ref\": \"C3\", \"value\": \"100 nF\", \"net\": \"3V3\" } ] } ```"}
+{"model":"Gemma 4 31B","id":"i1","cat":"instruct","pass":true,"outTokens":96,"tokPerS":null,"s":7.9,"answer":"Red Green Blue"}
+{"model":"Gemma 4 31B","id":"i2","cat":"instruct","pass":true,"outTokens":91,"tokPerS":null,"s":7.5,"answer":"JUPITER"}
+{"model":"Gemma 4 31B","id":"i3","cat":"instruct","pass":true,"outTokens":306,"tokPerS":null,"s":24.2,"answer":"A ground pour is a large area of copper connected to ground for noise reduction and shielding."}
+{"model":"Gemma 4 31B","id":"i4","cat":"instruct","pass":true,"outTokens":143,"tokPerS":null,"s":11.4,"answer":"Yes, 17 is a prime number."}
+{"model":"Gemma 4 31B","id":"i5","cat":"instruct","pass":true,"outTokens":190,"tokPerS":null,"s":14.8,"answer":"2, 4, 6, 8"}
+{"model":"Gemma 4 31B","id":"i6","cat":"instruct","pass":true,"outTokens":104,"tokPerS":null,"s":8.5,"answer":"[\"Helium\", \"Neon\", \"Argon\"]"}
+{"model":"Gemma 4 31B","id":"i7","cat":"instruct","pass":false,"outTokens":196,"tokPerS":null,"s":15.4,"answer":"tuicric"}
+{"model":"Gemma 4 31B","id":"i8","cat":"instruct","pass":true,"outTokens":220,"tokPerS":null,"s":17.2,"answer":"The Physics of Momentum"}
+{"model":"Gemma 4 31B","id":"k1","cat":"know","pass":true,"outTokens":37,"tokPerS":null,"s":3.1,"answer":"Na"}
+{"model":"Gemma 4 31B","id":"k2","cat":"know","pass":true,"outTokens":65,"tokPerS":null,"s":5.2,"answer":"1969"}
+{"model":"Gemma 4 31B","id":"k3","cat":"know","pass":true,"outTokens":112,"tokPerS":null,"s":8.6,"answer":"The SI unit of electrical resistance is the ohm ($\\Omega$)."}
+{"model":"Gemma 4 31B","id":"k4","cat":"know","pass":true,"outTokens":154,"tokPerS":null,"s":11.9,"answer":"3x^2"}
+{"model":"Gemma 4 31B","id":"k5","cat":"know","pass":true,"outTokens":111,"tokPerS":null,"s":8.9,"answer":"Nitrogen"}
+{"model":"Gemma 4 31B","id":"k6","cat":"know","pass":true,"outTokens":96,"tokPerS":null,"s":7.5,"answer":"Mitochondrion"}
+{"model":"Gemma 4 31B","id":"k7","cat":"know","pass":true,"outTokens":41,"tokPerS":null,"s":3.2,"answer":"Jane Austen"}
+{"model":"Gemma 4 31B","id":"k8","cat":"know","pass":true,"outTokens":187,"tokPerS":null,"s":14.1,"answer":"3.00 × 10⁸ m/s"}
+{"summary":"Gemma 4 31B","pass":34,"of":36,"byCat":{"math":{"pass":11,"n":12},"extract":{"pass":8,"n":8},"instruct":{"pass":7,"n":8},"know":{"pass":8,"n":8}},"totalS":681.9,"avgOutTokens":219.9}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m1","cat":"math","pass":true,"outTokens":69,"tokPerS":null,"s":0.4,"answer":"The price of 3 pencils is $0.75, so the cost per pencil is $0.75 ÷ 3 = $0.25. For 12 pencils, the cost is 12 × $0.25 = $3.00. Answer: 3"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m2","cat":"math","pass":true,"outTokens":64,"tokPerS":null,"s":0.3,"answer":"The average speed is calculated by dividing the total distance by the total time. Average speed = $ \\frac{180\\ \\text{km}}{2.5\\ \\text{hours}}"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m3","cat":"math","pass":true,"outTokens":66,"tokPerS":null,"s":0.3,"answer":"Let x be the number of marbles Leo has. Mia has 3x marbles. Total marbles: x + 3x = 4x = 48 x = 12 Mia has 36 marbles. Answer: 36"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m4","cat":"math","pass":true,"outTokens":134,"tokPerS":null,"s":0.6,"answer":"Let the width of the rectangle be $ x $ cm. The perimeter of a rectangle is given by $ 2(\\text{length} + \\text{width}) $. So, $ 2(8 + x) = 2"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m5","cat":"math","pass":true,"outTokens":140,"tokPerS":null,"s":0.6,"answer":"The collision is perfectly elastic, so we can use conservation of momentum. Initial momentum = (2 kg)(3 m/s) + (2 kg)(0) = 6 kg·m/s. Final v"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m6","cat":"math","pass":true,"outTokens":64,"tokPerS":null,"s":0.3,"answer":"The discount is 25% of $80, which is $20. The discounted price is $60. Then a 10% tax is added to $60, which is $6. The final price is $66. "}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m7","cat":"math","pass":true,"outTokens":29,"tokPerS":null,"s":0.2,"answer":"The number of days required for 6 workers to build the wall is 10. Answer: 10"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m8","cat":"math","pass":true,"outTokens":63,"tokPerS":null,"s":0.3,"answer":"The current can be calculated using Ohm's Law: $ I = \\frac{V}{R} $. $ I = \\frac{3.3}{220} = 0.015 $ A = 15 mA. Answer: 15"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m9","cat":"math","pass":true,"outTokens":29,"tokPerS":null,"s":0.2,"answer":"The sum of the interior angles of a hexagon is 720 degrees. Answer: 720"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m10","cat":"math","pass":false,"outTokens":24,"tokPerS":null,"s":0.2,"answer":"The car can travel 75 kilometres on a full tank. Answer: 75"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m11","cat":"math","pass":true,"outTokens":59,"tokPerS":null,"s":0.4,"answer":"Subtract 2x from both sides: 3x - 2x - 7 = 5 Simplify: x - 7 = 5 Add 7 to both sides: x = 12 Answer: 12"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"m12","cat":"math","pass":true,"outTokens":118,"tokPerS":null,"s":0.8,"answer":"The distance fallen by an object under gravity can be calculated using the formula: $$ d = \\frac{1}{2} g t^2 $$ Substituting the given value"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"j1","cat":"extract","pass":true,"outTokens":61,"tokPerS":null,"s":1,"answer":"{ \"order_id\": 4471, \"customer\": \"Dana Ruiz\", \"date\": \"2026-03-14\", \"quantity\": 3, \"unit_price\": 4.50 }"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"j2","cat":"extract","pass":true,"outTokens":52,"tokPerS":null,"s":0.4,"answer":"{ \"board\": \"XIAO ESP32-C3\", \"digital_pins\": 11, \"clock_mhz\": 160, \"sram_kb\": 400 }"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"j3","cat":"extract","pass":true,"outTokens":45,"tokPerS":null,"s":0.3,"answer":"{ \"team\": \"robotics team\", \"day\": \"Thursday\", \"time\": \"4:30 pm\", \"room\": \"Room 214\" }"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"j4","cat":"extract","pass":true,"outTokens":92,"tokPerS":null,"s":0.5,"answer":"{ \"ingredients\": [ { \"item\": \"flour\", \"amount\": \"2\", \"unit\": \"cup\" }, { \"item\": \"sugar\", \"amount\": \"1\", \"unit\": \"cup\" }, { \"item\": \"eggs\", \""}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"j5","cat":"extract","pass":true,"outTokens":23,"tokPerS":null,"s":0.2,"answer":"{\"A\": \"positive\", \"B\": \"negative\", \"C\": \"positive\"}"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"j6","cat":"extract","pass":true,"outTokens":23,"tokPerS":null,"s":0.2,"answer":"{\"metres\": 5000, \"minutes\": 120}"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"j7","cat":"extract","pass":true,"outTokens":20,"tokPerS":null,"s":0.2,"answer":"{\"user\": \"alex.chen\", \"domain\": \"example.org\"}"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"j8","cat":"extract","pass":true,"outTokens":46,"tokPerS":null,"s":0.3,"answer":"{\"parts\":[{\"ref\":\"R1\",\"value\":\"10 kOhm\",\"net\":\"SDA\"},{\"ref\":\"C3\",\"value\":\"100 nF\",\"net\":\"3V3\"}]}"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"i1","cat":"instruct","pass":false,"outTokens":10,"tokPerS":null,"s":0.1,"answer":"Red Blue Yellow"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"i2","cat":"instruct","pass":true,"outTokens":21,"tokPerS":null,"s":0.2,"answer":"JUPITER IS THE LARGEST PLANET IN OUR SOLAR SYSTEM."}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"i3","cat":"instruct","pass":false,"outTokens":33,"tokPerS":null,"s":0.3,"answer":"A ground pour is a layer of conductive material applied to the surface of a circuit board to provide a common reference point for electrical"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"i4","cat":"instruct","pass":true,"outTokens":6,"tokPerS":null,"s":0.1,"answer":"Yes"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"i5","cat":"instruct","pass":true,"outTokens":12,"tokPerS":null,"s":0.1,"answer":"2,4,6,8"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"i6","cat":"instruct","pass":true,"outTokens":17,"tokPerS":null,"s":0.1,"answer":"[\"Helium\", \"Neon\", \"Argon\"]"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"i7","cat":"instruct","pass":false,"outTokens":8,"tokPerS":null,"s":0.1,"answer":"circtui"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"i8","cat":"instruct","pass":true,"outTokens":9,"tokPerS":null,"s":0.1,"answer":"MomentumConservation"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"k1","cat":"know","pass":true,"outTokens":6,"tokPerS":null,"s":0.1,"answer":"Na"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"k2","cat":"know","pass":true,"outTokens":9,"tokPerS":null,"s":0.1,"answer":"1969"}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"k3","cat":"know","pass":true,"outTokens":18,"tokPerS":null,"s":0.1,"answer":"The SI unit of electrical resistance is the ohm (Ω)."}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"k4","cat":"know","pass":true,"outTokens":27,"tokPerS":null,"s":0.2,"answer":"The derivative of $ x^3 $ with respect to $ x $ is $ 3x^2 $."}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"k5","cat":"know","pass":true,"outTokens":8,"tokPerS":null,"s":0.1,"answer":"Nitrogen."}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"k6","cat":"know","pass":true,"outTokens":9,"tokPerS":null,"s":0.1,"answer":"Mitochondria."}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"k7","cat":"know","pass":true,"outTokens":19,"tokPerS":null,"s":0.1,"answer":"Jane Austen wrote the novel \"Pride and Prejudice.\""}
+{"model":"Qwen3 1.7B Q4_K_M (Mac)","id":"k8","cat":"know","pass":false,"outTokens":36,"tokPerS":null,"s":0.3,"answer":"The speed of light in a vacuum is $ 3.00 \\times 10^8 $ metres per second, to three significant figures."}
+{"summary":"Qwen3 1.7B Q4_K_M (Mac)","pass":31,"of":36,"byCat":{"math":{"pass":11,"n":12},"extract":{"pass":8,"n":8},"instruct":{"pass":5,"n":8},"know":{"pass":7,"n":8}},"totalS":9.9,"avgOutTokens":40.8}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m1","cat":"math","pass":true,"outTokens":66,"tokPerS":null,"s":0.5,"answer":"To find the price of one pencil, we need to divide the total cost by the number of pencils. First, find the cost per pencil: $0.75 / 3 = $0."}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m2","cat":"math","pass":true,"outTokens":42,"tokPerS":null,"s":0.3,"answer":"To find the average speed, divide the distance by the time. Average speed = Distance / Time = 180 km / 2.5 hours = 72 km/h Answer: 72"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m3","cat":"math","pass":true,"outTokens":117,"tokPerS":null,"s":0.8,"answer":"Let's denote the number of marbles Leo has as x. Since Mia has 3 times as many marbles as Leo, she has 3x marbles. The total number of marbl"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m4","cat":"math","pass":true,"outTokens":112,"tokPerS":null,"s":1.1,"answer":"To find the width, we'll use the formula for the perimeter of a rectangle: P = 2l + 2w. Given P = 28 and l = 8, we can solve for w: 28 = 2(8"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m5","cat":"math","pass":true,"outTokens":150,"tokPerS":null,"s":1.8,"answer":"To solve this problem, we use the law of conservation of momentum. Initial momentum = (mass of first cart) * (initial velocity of first cart"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m6","cat":"math","pass":true,"outTokens":70,"tokPerS":null,"s":1,"answer":"To find the final price, first calculate the discount: $80 * 0.25 = $20 Discounted price: $80 - $20 = $60 Then add the tax: $60 * 0.10 = $6 "}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m7","cat":"math","pass":true,"outTokens":88,"tokPerS":null,"s":0.9,"answer":"To find the number of days it would take for 6 workers to build the wall, we need to first determine the total work hours required. 5 worker"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m8","cat":"math","pass":true,"outTokens":36,"tokPerS":null,"s":0.6,"answer":"I_R = V/R I_R = 3.3/220 I_R ≈ 0.015 I_R ≈ 15 mA Answer: 15"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m9","cat":"math","pass":true,"outTokens":58,"tokPerS":null,"s":0.6,"answer":"The formula for the sum of interior angles of a polygon is (n-2)*180, where n is the number of sides. For a hexagon, which has 6 sides, the "}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m10","cat":"math","pass":true,"outTokens":112,"tokPerS":null,"s":1.2,"answer":"To find out how many kilometres the car can travel on a full tank, we need to divide the total capacity of the fuel tank by the amount used "}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m11","cat":"math","pass":true,"outTokens":99,"tokPerS":null,"s":1.4,"answer":"To solve for x, we need to isolate x on one side of the equation. First, subtract 2x from both sides: 3x - 2x - 7 = 2x - 2x + 5 This simplif"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"m12","cat":"math","pass":true,"outTokens":98,"tokPerS":null,"s":0.7,"answer":"To find the distance fallen, we use the equation for uniformly accelerated motion: s = ut + (1/2)at^2 Since u = 0 (initial velocity), s = (1"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"j1","cat":"extract","pass":false,"outTokens":41,"tokPerS":null,"s":0.5,"answer":"{\"order_id\": null, \"customer\": \"Dana Ruiz\", \"date\": \"2026-03-14\", \"quantity\": 3, \"unit_price\": 4.5}"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"j2","cat":"extract","pass":true,"outTokens":36,"tokPerS":null,"s":0.7,"answer":"{\"board\": \"XIAO ESP32-C3\", \"digital_pins\": 11, \"clock_mhz\": 160, \"sram_kb\": 400}"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"j3","cat":"extract","pass":true,"outTokens":29,"tokPerS":null,"s":0.5,"answer":"{\"team\": \"robotics\", \"day\": \"Thursday\", \"time\": \"4:30 pm\", \"room\": \"214\"}"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"j4","cat":"extract","pass":false,"outTokens":47,"tokPerS":null,"s":0.5,"answer":"{\"ingredients\":[{\"item\":\"flour\",\"amount\":\"2 cups\",\"unit\":\"cups\"},{\"item\":\"sugar\",\"amount\":\"1 cup\",\"unit\":\"cups\"},{\"item\":\"eggs\",\"amount\":\"3\""}
+{"model":"Llama 3.2 3B Q4_K_M","id":"j5","cat":"extract","pass":true,"outTokens":19,"tokPerS":null,"s":0.2,"answer":"{\"A\": \"positive\", \"B\": \"negative\", \"C\": \"positive\"}"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"j6","cat":"extract","pass":true,"outTokens":15,"tokPerS":null,"s":0.2,"answer":"{\"metres\": 5000, \"minutes\": 120}"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"j7","cat":"extract","pass":false,"outTokens":14,"tokPerS":null,"s":0.2,"answer":"{\"user\": \"alex\", \"domain\": \"example.org\"}"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"j8","cat":"extract","pass":true,"outTokens":39,"tokPerS":null,"s":0.4,"answer":"{\"parts\":[{\"ref\":\"R1\",\"value\":\"10 kOhm\",\"net\":\"SDA\"},{\"ref\":\"C3\",\"value\":\"100 nF\",\"net\":\"3V3\"}]}"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"i1","cat":"instruct","pass":false,"outTokens":6,"tokPerS":null,"s":0.1,"answer":"Red Orange Blue"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"i2","cat":"instruct","pass":false,"outTokens":44,"tokPerS":null,"s":0.5,"answer":"JUPITER IS THE LARGEST PLANET IN OUR SOLAR SYSTEM, WITH A DIAMETER OF approximately 142,984 KILOMETERS AND MASS ABOUT 318 TIMES THAT OF EART"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"i3","cat":"instruct","pass":true,"outTokens":19,"tokPerS":null,"s":0.3,"answer":"A ground pour is an area of connected copper on a circuit board for grounding purposes only."}
+{"model":"Llama 3.2 3B Q4_K_M","id":"i4","cat":"instruct","pass":false,"outTokens":2,"tokPerS":null,"s":0.1,"answer":"No"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"i5","cat":"instruct","pass":false,"outTokens":11,"tokPerS":null,"s":0.2,"answer":"4, 6, 8, 10"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"i6","cat":"instruct","pass":true,"outTokens":14,"tokPerS":null,"s":0.2,"answer":"[\"Neon\", \"Krypton\", \"Xenon\"]"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"i7","cat":"instruct","pass":false,"outTokens":4,"tokPerS":null,"s":0.1,"answer":"tciruc"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"i8","cat":"instruct","pass":true,"outTokens":7,"tokPerS":null,"s":0.1,"answer":"The Power of Momentum In Motion"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"k1","cat":"know","pass":true,"outTokens":2,"tokPerS":null,"s":0.1,"answer":"Na"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"k2","cat":"know","pass":true,"outTokens":3,"tokPerS":null,"s":0.1,"answer":"1969"}
+{"model":"Llama 3.2 3B Q4_K_M","id":"k3","cat":"know","pass":true,"outTokens":14,"tokPerS":null,"s":0.1,"answer":"The SI unit of electrical resistance is the ohm (Ω)."}
+{"model":"Llama 3.2 3B Q4_K_M","id":"k4","cat":"know","pass":true,"outTokens":18,"tokPerS":null,"s":0.2,"answer":"The derivative of x^3 with respect to x is 3x^2."}
+{"model":"Llama 3.2 3B Q4_K_M","id":"k5","cat":"know","pass":true,"outTokens":25,"tokPerS":null,"s":0.2,"answer":"Nitrogen (N2) makes up approximately 78% of Earth's atmosphere, followed by oxygen (O2)."}
+{"model":"Llama 3.2 3B Q4_K_M","id":"k6","cat":"know","pass":true,"outTokens":5,"tokPerS":null,"s":0.1,"answer":"Mitochondria."}
+{"model":"Llama 3.2 3B Q4_K_M","id":"k7","cat":"know","pass":true,"outTokens":15,"tokPerS":null,"s":0.2,"answer":"Jane Austen wrote the novel \"Pride and Prejudice\"."}
+{"model":"Llama 3.2 3B Q4_K_M","id":"k8","cat":"know","pass":false,"outTokens":6,"tokPerS":null,"s":0.1,"answer":"299,792 m/s"}
+{"summary":"Llama 3.2 3B Q4_K_M","pass":27,"of":36,"byCat":{"math":{"pass":12,"n":12},"extract":{"pass":5,"n":8},"instruct":{"pass":3,"n":8},"know":{"pass":7,"n":8}},"totalS":16.9,"avgOutTokens":41.2}
