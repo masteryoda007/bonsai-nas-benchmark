@@ -2,7 +2,7 @@
 
 Speed, stress and quality measurements of PrismML's 1-bit [Bonsai-8B](https://huggingface.co/prism-ml/Bonsai-8B-gguf) on a NAS with no GPU, next to ordinary 4-bit models. I ran these in my home lab on 11 and 12 October 2026. This repo has the scripts, the raw output and the summary I wrote up.
 
-PrismML's model card and whitepaper give no x86 CPU speeds for this model. The only other x86 result for the 8B I found is a [community run](https://github.com/PrismML-Eng/Bonsai-demo/blob/main/community-benchmarks/bonsai/cpu-i3-7100-linux-proxmox.md) on an i3-7100 VM with an older build (3.61 tok/s writing). These are mine, from one machine, so treat them as one data point.
+PrismML's model card and whitepaper give no x86 CPU speeds for this model. The other x86 results for the 8B I found are community llama-bench runs on older builds, before the fork's AVX2 repack: an [i3-7100 VM](https://github.com/PrismML-Eng/Bonsai-demo/blob/main/community-benchmarks/bonsai/cpu-i3-7100-linux-proxmox.md) at 3.61 tok/s writing, and an i7-10510U laptop (about 4.6) and a Skylake-SP Xeon VM (about 5.0) in [PR 10 of PrismML's fork](https://github.com/PrismML-Eng/llama.cpp/pull/10). llama-bench numbers aren't directly comparable with the llama-server timings here. These are mine, from one machine, so treat them as one data point.
 
 ## Results at a glance
 
@@ -81,7 +81,7 @@ while true; do printf '%s ' "$(date +%T)"; curl -s -o /dev/null -w '%{http_code}
 
 - 36 tasks in four groups: 12 math word problems (the last `Answer: <number>` in the reply, 1% tolerance), 8 JSON extractions (the JSON must parse and the required fields must hold the right values; numbers given as strings are accepted), 8 instruction-following tasks (format rules), 8 short knowledge questions.
 - The same system prompt and user prompts for every model. Greedy decoding (temperature 0), at most 512 output tokens, `<think>` blocks stripped before checking.
-- Thinking off: `/no_think` plus `enable_thinking: false` for Qwen-family models (Bonsai included), `think: false` in Ollama. Gemma and Llama got no switch and ran on LM Studio's defaults.
+- Thinking off: `/no_think` plus `enable_thinking: false` for Qwen-family models (Bonsai included), `think: false` in Ollama. Gemma and Llama got no switch and ran on LM Studio's defaults. Bonsai didn't need the switch: its chat template always ends the prompt with an empty think block and reads neither setting, so for Bonsai the `/no_think` tag was only extra text in the prompt. It copied the tag into one answer here and eight in the use-case run; the scorers ignore it.
 - One run per model. Every answer is checked by code, not by eye and not by another model.
 - Bonsai and one Qwen3 1.7B run were on the NAS. Everything else ran on the Mac in LM Studio, quality only.
 
@@ -247,7 +247,8 @@ All ten passed their checks. Qwen3 1.7B on a 1,285-token prompt: reading 54 tok/
 - Most speed figures are single runs. The sustained test shows the spread on this box: 8.31 to 8.64 tok/s.
 - The NAS kept running its normal containers during the tests.
 - The `answer` and `sample` fields in the raw files are cut to 140 and 160 characters with whitespace collapsed. They are for reading, not for re-scoring; re-run `eval.js` to re-score.
-- Speed results come from the PrismML fork. Mainline llama.cpp has run Q1_0 on CPU since April 2026 (x86 AVX2 kernels since 20 April), but it lacks the fork's x86 repacked kernels. I did not compare the two.
+- Speed results come from the PrismML fork. Mainline llama.cpp has run Q1_0 on CPU since PrismML upstreamed it in April 2026 (x86 AVX2 kernels since 20 April), but it lacks the fork's x86 repacked kernels. I did not compare the two.
+- The KV cache was 8-bit (`q8_0`), not the default F16. In this build the faster CPU attention paths need an F16 or F32 cache, so the slowdown with prompt length (down to 2.9 tok/s writing after 4,096 tokens) may say more about attention with a `q8_0` cache than about the 1-bit weights. I haven't re-run with F16 yet.
 - My explanation of the speed is arithmetic, not profiling. Bonsai moves about 1 GB of weights per token, roughly 9-10 GB/s at these speeds, against a theoretical 34 GB/s for dual-channel DDR4-2133. Qwen3 1.7B (a 1.36 GB blob in Ollama, listed as 1.4 GB) moves about 23-27 GB/s on the same box. That points at the four cores, not memory bandwidth, as Bonsai's limit here.
 - The use-case test has 8 tasks per use case, run once per model, so one task is 12.5 points of a use case. Read the per-use-case numbers as rough.
 - The use-case rules check what a script can check. They don't judge whether a story is any good, and a summary can pass while leaving out something a person would mention.
@@ -257,16 +258,20 @@ All ten passed their checks. Qwen3 1.7B on a 1,285-token prompt: reading 54 tok/
 
 ## PrismML's numbers, for context
 
-These are PrismML's own results, not reproduced here. Six benchmarks (MMLU-Redux, MuSR, GSM8K, HumanEval+, IFEval, BFCLv3), non-thinking, greedy, EvalScope and vLLM on H100s. Every baseline is a 16-bit model, not a 4-bit file.
+These are PrismML's own results, not reproduced here. Six benchmarks (MMLU-Redux, MuSR, GSM8K, HumanEval+, IFEval, BFCLv3), non-thinking, greedy, EvalScope and vLLM on H100s. Every baseline is a 16-bit model, not a 4-bit file. PrismML's "matching full-precision 8B models" refers to this set: Bonsai is level with Ministral3 8B and Olmo 3 7B and ahead of Llama 3.1 8B, and behind its parent Qwen3 8B.
 
 | Model | Precision in PrismML's table | Six-benchmark average |
 |---|---|---:|
 | Qwen3 8B | 16-bit | 79.3 |
 | Qwen3 4B | 16-bit | 77.1 |
+| Ministral3 8B | 16-bit | 71.0 |
+| Olmo 3 7B | 16-bit | 70.9 |
 | Bonsai-8B | 1-bit | 70.5 |
+| Llama 3.1 8B | 16-bit | 67.1 |
 | Qwen3 1.7B | 16-bit | 66.6 |
+| Llama 3.2 3B | 16-bit | 64.4 |
 
-PrismML's speed and energy comparisons (6.2x faster on an RTX 4090, 368 vs 59 tok/s; 4.1-5.6x less energy per token on an RTX 4090 and an M4 Pro) are measured against 16-bit models on GPUs and Apple silicon. PrismML does not say how Bonsai is made beyond "built from Qwen3-8B" with "proprietary Caltech intellectual property".
+PrismML's speed and energy comparisons (6.2x faster on an RTX 4090, 368 vs 59 tok/s; 4.1-5.6x less energy per token on an RTX 4090 and an M4 Pro) are measured against 16-bit models on GPUs and Apple silicon. Its one 4-bit comparison, on an iPhone 17 Pro Max, gives 3.2x faster writing and an estimated 2.1x less energy per token. PrismML says Bonsai is "built from Qwen3-8B", rests on "proprietary Caltech intellectual property" and was [trained on Google TPUs](https://prismml.com/news/prismml-launches-worlds-first-1-bit-ai-model), but has not published the method.
 
 Sources: the [1-bit Bonsai 8B whitepaper](https://github.com/PrismML-Eng/Bonsai-demo/blob/main/1-bit-bonsai-8b-whitepaper.pdf), and the [Ternary-Bonsai-4B](https://huggingface.co/prism-ml/Ternary-Bonsai-4B-gguf) and [Ternary-Bonsai-1.7B](https://huggingface.co/prism-ml/Ternary-Bonsai-1.7B-gguf) model cards, which carry PrismML's same-harness scores for Qwen3 4B and 1.7B. Use the whitepaper rather than the Bonsai-8B card for baseline cells; several cells on that card don't match the whitepaper or add up to the card's own averages.
 
@@ -369,7 +374,7 @@ Run the scripts from a machine or container that can reach the server. To keep a
 
 ## Credits
 
-PrismML for publishing the weights under Apache 2.0, the Qwen team for the base models, and the llama.cpp contributors whose CPU kernels do the work here: khosravipasha and pl752 upstream, and Strike3D for the AVX2 repack in PrismML's fork. Thanks also to the Ollama and LM Studio teams.
+PrismML for publishing the weights under Apache 2.0, the Qwen team for the base models, and the llama.cpp contributors whose CPU kernels do the work here: PrismML's Pasha Khosravi (khosravipasha) and pl752 upstream, and Strike3D for the AVX2 repack in PrismML's fork. Thanks also to the Ollama and LM Studio teams.
 
 ## License
 
