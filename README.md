@@ -11,6 +11,7 @@ PrismML's model card and whitepaper give no x86 CPU speeds for this model. The o
 - On the same 36 auto-checked tasks: Bonsai-8B 32, Qwen3 8B Q4_K_M 33, Qwen3 4B Q4_K_M 35, Qwen3 1.7B Q4_K_M 33 (on the NAS) and 32 (on the Mac).
 - On this CPU, Qwen3 1.7B Q4_K_M (1.4 GB in Ollama) writes about 2x and reads about 5-6x faster than Bonsai.
 - On 48 everyday tasks, 8 each for chat, reasoning, code, debugging, summaries and creative writing, with code run against unit tests: Bonsai-8B 36, and Qwen3 1.7B Q4_K_M 30 on the same NAS. On the Mac, for correctness only: Qwen3 4B 37, Qwen3 8B 40. Bonsai writes at 8.3-8.9 tokens/s in every use case; the median wait per answer runs from 3.6 s for chat to 24 s for a short function.
+- Speed probes on the same llama-server: Bonsai's speed scales almost linearly with cores up to 4 and Qwen3 1.7B moves about 26 GB/s of weights where Bonsai moves 9-10, so Bonsai is limited by the CPU, not memory bandwidth. An SRE view (latency, SLOs, capacity, an incident review, alerts and a runbook) follows the results.
 
 ![Results of the speed, stress and 36-task tests](images/results-card.png)
 
@@ -240,6 +241,113 @@ All ten passed their checks. Qwen3 1.7B on a 1,285-token prompt: reading 54 tok/
 - Sustained: 20 requests in 10.5 minutes, 0 errors, 5,120 tokens written. Writing speed per request stayed between 8.31 and 8.64 tok/s from the first request to the last; 8.12 tok/s overall, including prompt time.
 - The rest of the NAS: 300 health checks of another web app on the box during the session. All returned 200. Median 32 ms, 7 over 1 s, 1 over 2 s, worst 5.03 s.
 
+## Speed probes: threads, KV cache, one server
+
+| Probe | Reading tok/s | Writing tok/s |
+|---|---:|---:|
+| Bonsai, 1 / 2 / 4 / 8 threads | 3.13 / 6.15 / 11.85 / 11.79 | 2.66 / 5.03 / 8.73 / 7.55 |
+| Bonsai, 2,048-token prompt, 8-bit KV cache | 8.61 | 5.23 |
+| Bonsai, 2,048-token prompt, F16 KV cache | 11.24 | 4.16 |
+| Qwen3 1.7B, same server | 58.75 | 19.12 |
+| Qwen3 1.7B, 2,048-token prompt | 34.88 | 11.67 |
+| Bonsai, 4 slots, 4 requests at once | | 8.21 combined, end to end |
+
+*One run each on 12 October: same llama-server build and 3 GiB cap, prompt cache off, fixed token counts, 4 threads unless stated. Reading is a 256-token prompt unless marked; writing is 128 tokens after a short prompt, or 64 after the long one and per request in the 4-slot test (12-token prompts).*
+
+Four threads, one per physical core, is the sweet spot: 3.79x faster reading and 3.28x faster writing than one, while eight read no faster and write 13.5% slower. Qwen3 1.7B on the same server moves about 26-27 GB/s of weights against Bonsai's 9-10 GB/s, so Bonsai is limited by its cores, not by memory bandwidth. The default F16 KV cache read the 2,048-token prompt 31% faster and wrote 20% slower after it, so the job took 197 s instead of 250 s. But F16 costs memory. At 8K its cache takes about 1.13 GiB against 0.60 GiB at 8 bits, and llama-server allocates and zeroes all of it at startup, so the 2.22 GiB the container read after that run (one reading, against a 3 GiB cap) already includes a full context. With the 8-bit cache the same counter, which includes page cache, reached 2.71 GiB late in the stress run, so with F16 I'd use a 4 GiB cap or a 4K context (`-c 4096`). Four slots were only 2-7% faster than one slot measured the same way, and all four answers arrived together at about 31 s instead of at about 8, 17, 25 and 33 s (estimated), so I keep one slot.
+
+## Running it as a service: an SRE view
+
+A web app on the same NAS uses these models. The model server (Bonsai as above, restart policy "no") shares the box with the Ollama container (Qwen3 1.7B at 8K, 3 GiB cap) and a speech-to-text container. As configured, the web app sends a document to a paid cloud model when the local one fails. These are benchmark figures, mostly one request at a time, so they are best cases.
+
+### Golden signals
+
+- **Latency:** set by tokens (table and cost model below).
+- **Traffic:** benchmark only, one request at a time apart from two four-request tests.
+- **Errors:** 2 of 214 local requests failed: an OOM kill in the Ollama container, and a 4,096-token request my client dropped at Node fetch's 5-minute limit. All 398 web app health checks returned 200.
+- **Saturation:** the cores cap speed, the single slot queues, and memory runs out.
+
+### Latency
+
+| Request (Bonsai unless noted) | n | Time |
+|---|---:|---|
+| One of 48 everyday tasks | 48 | median 14.3 s, p95 28.1 s, max 67.9 s |
+| The same tasks on Qwen3 1.7B, warm | 48 | median 4.0 s, p95 9.3 s, max 10.1 s |
+| Qwen3 1.7B, a request that has to load the model | 2 | 13.3 s, 17.0 s (12.3 s and 11.5 s of it loading) |
+| First token after a 300-token prompt | 1 | 26.3 s |
+| Web app health check, every 10 s | 398 | median 34 ms, p95 0.37 s, max 5.03 s |
+
+Up to about 200 prompt tokens, Bonsai takes about -0.53 s + 85 ms per prompt token read + 126 ms per answer token (within 1.1 s on the 48 tasks); longer prompts read slower, 164 ms per token at 4,096. Percentiles are nearest rank, so a p95 from 48 samples rests on the two or three slowest. The health checks ran from another machine during benchmark sessions only, so there is no quiet baseline.
+
+### SLOs and measured compliance
+
+| # | Objective | Measured | Verdict |
+|---|---|---|---|
+| 1 | Short answers (≤100 tokens in, ≤64 out): 95% within 10 s on Bonsai, 5 s on Qwen | Bonsai 33/35 = 94.3% (miss-rate 95% interval 0.7-19.2%); Qwen 38/38 warm, 37/38 with its cold start | Bonsai missed narrowly; Qwen met |
+| 2 | Extractions and summaries (≤200 in, ≤150 out): 95% within 30 s on Bonsai, 10 s on Qwen | Bonsai 16/16, worst 27.7 s (interval 0-20.6%); Qwen 16/16 warm, 15/16 with the reload after the OOM kill, 14/16 with the failed attempt | Bonsai met, thin margin; Qwen only while warm |
+| 3 | 99% of local requests answered on the first try (no error, no timeout) | Bonsai 122/123 = 99.2%; Qwen 90/91 = 98.9%; combined 212/214 = 99.1% | Bonsai met, barely; Qwen missed |
+| 4 | 99% of health checks return 200 within 2 s | 396/398 = 99.5% | Met |
+
+By the cost model, jobs at the limits of SLOs 1 and 2 take 14-16 s and 32-35 s: cap Bonsai's replies near 25 and 90 tokens, or loosen the targets. SLO 3 matters most, because every miss on a document sends it to a cloud model. Long documents get a completion objective instead: 99% of those up to 4,000 tokens done within 15 minutes. Larger ones get split.
+
+### Capacity and saturation
+
+| Job (one slot, 4 threads, 8-bit KV, 8K) | Seconds each | Jobs per hour |
+|---|---:|---:|
+| Quick question (8 chat tasks) | 3.96 (mean) | 909 |
+| Short summary (8 tasks) | 21.4 (mean) | 168 |
+| 256-token answer (20 in a row) | 31.5 (mean) | 114 |
+| 2,048-token document | 250 (F16: 197) | 14.4 (F16: 18.2) |
+| The 48-task mix | 15.6 (mean) | 231 |
+
+- **Slot:** nothing is refused; work waits. Four requests sent at once finished at 38.9, 77.2, 115.7 and 154.0 s.
+- **CPU:** the model server ran at 380% or more in 143 of 156 busy samples.
+- **Memory:** the rest of the NAS held about 12.8 of 15.53 GiB before any model loaded (one clean reading). With one engine loaded, available memory fell to 333-774 MiB (model server) or 252-294 MiB (Qwen, and the NAS swapped in every Qwen run). Both together would need about 620 MiB more than was free at idle. The Ollama container ran at 78-92% of its cap whenever Qwen ran.
+
+More RAM with bigger caps would fix memory and the OOM kill, not speed, queueing or the client timeout.
+
+### Incident review: Ollama's runner OOM-killed near its cap
+
+12 October, 18:28; blameless and condensed.
+
+- **What happened.** About 2¾ minutes into the 48-task Qwen3 1.7B run, the OOM killer stopped Ollama's model runner as the 35th back-to-back request started. Ollama's server survived and reloaded the model in 11.5 s.
+- **Impact.** 1 of 48 requests failed; the benchmark called Ollama directly, so nothing went to the cloud. The kill stayed in one container, but the memory pressure didn't: the host fell to 252 MiB available and swapped out 135 MiB.
+- **Detection.** By eye, from Ollama's error in the saved answers; the OOMKilled flag confirmed an OOM kill. Readings above 83% of the cap had been logged in this run and two earlier ones, but nothing alerted.
+- **Cause.** Qwen3 1.7B at 8K loads at 78-80% of the 3 GiB cap and grew 197-254 MiB a minute under load; the last reading, about 20 s before the kill, was 92.4%. Cap or host is not settled: the trend stops about 170 MiB short of the cap, but the host was swapping, and the kernel log wasn't captured. The likely lever is the KV cache (Ollama defaults to 16-bit; unconfirmed): the same file read 1.22-1.70 GiB on llama-server with an 8-bit cache, single readings that don't size the gap.
+- **Actions.** Local-only setting on; an 8-bit KV cache or a 4K context for Ollama (target: 2.1 GiB or less after loading); one local retry (about 18 s, not a cloud call); the alerts below; restart policy "always"; kernel OOM logging.
+
+### Failure modes
+
+| Failure | Seen | Mitigation |
+|---|---|---|
+| Ollama outgrows its cap | Once, after two near misses | Smaller footprint; unload between batches; local retry |
+| A long prompt holds the only slot | Every document | Interactive first; 1,024-token chunks, so a request waits behind at most one chunk (about 113 s with a 64-token answer) |
+| Client timeout shorter than the job | Once, at 5 minutes | Timeouts from the expected time, finite for background jobs |
+| The model server stays down | Not yet; policy "no", and a NAS update once stopped such containers | Restart policy "always"; check after updates |
+| A local failure becomes a cloud call | By design | Local-only setting on; alert on every fallback |
+
+### Alerts
+
+| Alert | Fires when | Replay on 12 October |
+|---|---|---|
+| Runner crash (page) | OOM event, OOMKilled=true, exit 137, or Ollama's "unexpectedly stopped" error | At the kill |
+| Near the cap | Ollama ≥2.5 GiB for 2 samples (warn), ≥2.7 GiB (critical); model server ≥2.7 GiB for 2 samples | Warn 64 s, critical 41 s before the kill; also warns in the earlier Qwen eval run and on the model server late in its stress run |
+| Host memory | MemAvailable <400 MiB for 2 samples (warn); <300 MiB or >64 MiB swapped per sample (critical) | Warn 41 s, critical 19 s before the kill; critical in both earlier Qwen runs; warning only, late in the model server's stress run |
+| Model down (page) | A needed container down >60 s, or 2 failed health checks in a row (every 30 s) | Not triggered |
+| Cloud fallback | Any document sent to a cloud model | Not applicable |
+| Slow requests | Queued >120 s, >300 s in all, or Bonsai writing <7 tok/s on 3 short prompts in a row | Both 4,096-token runs; the 4-slot probe |
+
+With ~23 s sampling the warnings came 19-64 s before the kill, too fast for a person, so let the near-cap warning pause batch work and unload an idle model.
+
+### Runbook: the local model is slow or failing
+
+1. If the cause isn't obvious within a minute, turn the local-only setting on.
+2. `docker ps -a`, `docker inspect` (status, OOMKilled, exit code, restart policy), `docker stats --no-stream`, `/proc/meminfo`. Normal: Ollama 2.34-2.40 GiB after loading Qwen (worry at 2.5 GiB and rising); host 2.75 GiB available idle, only 0.31-0.49 GiB after a Qwen load as configured today.
+3. Runner killed, container up: retry (the reload takes about 12 s). Container exited: `docker start` it (the model server serves within 17 s), then set restart policy "always".
+4. Slow: check `/slots` against the expected time (113 s at 1,024 prompt tokens, 254 s at 2,048, 696 s at 4,096). A restart fails everything queued.
+5. Host memory low: unload Ollama's model (about 2.2 GiB back) or stop the model server (at least 1.2-1.6 GiB back after use).
+6. Close after 15 minutes with no OOM event and a working short request to each model; record any documents sent to a cloud model.
+
 ## Caveats
 
 - 36 tasks is a small, easy set, run once per model. It catches broken JSON and ignored instructions. It cannot rank models that are one or two tasks apart. The same Qwen3 1.7B scored 33 in Ollama on the NAS and 32 in LM Studio on the Mac, with different files (1.4 GB and 1.28 GB) and runtimes.
@@ -248,12 +356,12 @@ All ten passed their checks. Qwen3 1.7B on a 1,285-token prompt: reading 54 tok/
 - The NAS kept running its normal containers during the tests.
 - The `answer` and `sample` fields in the raw files are cut to 140 and 160 characters with whitespace collapsed. They are for reading, not for re-scoring; re-run `eval.js` to re-score.
 - Speed results come from the PrismML fork. Mainline llama.cpp has run Q1_0 on CPU since PrismML upstreamed it in April 2026 (x86 AVX2 kernels since 20 April), but it lacks the fork's x86 repacked kernels. I did not compare the two.
-- The KV cache was 8-bit (`q8_0`), not the default F16. In this build the faster CPU attention paths need an F16 or F32 cache, so the slowdown with prompt length (down to 2.9 tok/s writing after 4,096 tokens) may say more about attention with a `q8_0` cache than about the 1-bit weights. I haven't re-run with F16 yet.
-- My explanation of the speed is arithmetic, not profiling. Bonsai moves about 1 GB of weights per token, roughly 9-10 GB/s at these speeds, against a theoretical 34 GB/s for dual-channel DDR4-2133. Qwen3 1.7B (a 1.36 GB blob in Ollama, listed as 1.4 GB) moves about 23-27 GB/s on the same box. That points at the four cores, not memory bandwidth, as Bonsai's limit here.
+- The KV cache was 8-bit (`q8_0`), not the default F16. A later probe with F16 read a 2,048-token prompt 31% faster (11.24 against 8.61 tok/s) and wrote 20% slower after it (4.16 against 5.23); see "Speed probes" below. So part of the slowdown with prompt length comes from the cache type, not the 1-bit weights.
+- Bonsai moves about 1 GB of weights per token, roughly 9-10 GB/s at these speeds, against a theoretical 34 GB/s for dual-channel DDR4-2133. Qwen3 1.7B (a 1.36 GB file) moves about 26 GB/s on the same llama-server, so the memory can deliver more, and Bonsai's speed scales almost linearly with cores up to 4 ("Speed probes" below). Both point at the four cores, not memory bandwidth, as the limit. I have not profiled with hardware counters.
 - The use-case test has 8 tasks per use case, run once per model, so one task is 12.5 points of a use case. Read the per-use-case numbers as rough.
 - The use-case rules check what a script can check. They don't judge whether a story is any good, and a summary can pass while leaving out something a person would mention.
 - Bonsai often copied the `/no_think` tag from the prompt onto the end of its answer. The scorer removes that tag for every model; it never decided a verdict in these runs.
-- In the Qwen3 1.7B use-case run on the NAS, one request (`s3`) failed when Ollama's model runner was killed at the container's 3 GB memory cap. Qwen3 1.7B at 8K context plus an embedding model in the same Ollama is a tight fit in 3 GB. That task was re-run once; the first attempt is in `results/raw/usecases-nas-qwen3-1.7b.first-attempt.jsonl`.
+- In the Qwen3 1.7B use-case run on the NAS, one request (`s3`) failed when Ollama's model runner was OOM-killed, with the container at 92% of its 3 GB cap and the NAS short of memory and swapping; the logs don't settle whether the cap or the host triggered it. Qwen3 1.7B at 8K context plus an embedding model in the same Ollama is a tight fit in 3 GB. That task was re-run once; the first attempt is in `results/raw/usecases-nas-qwen3-1.7b.first-attempt.jsonl`.
 - Node's built-in `fetch` gives up when response headers take more than 5 minutes. My first stress run died on that during the 4,096-token prompt, which is why the scripts send their requests with `node:http` and explicit timeouts (only the short streaming test still uses `fetch`), and why the stress file is `stress2.jsonl`.
 
 ## PrismML's numbers, for context
@@ -319,6 +427,8 @@ sh scripts/usecases/score.sh --cases scripts/usecases/tasks.json scripts/usecase
 
 The tasks live in `scripts/usecases/make_tasks.py`, which writes `tasks.json`; change them there.
 
+The speed probes start llama-server once per setting (`-t 1/2/4/8`, with and without `-ctk q8_0 -ctv q8_0`, `-np 1` or `-np 4`) and run `scripts/probes/client.js` against it, for example `URL=http://127.0.0.1:8080 LABEL="Bonsai t4" TG=128 PP=256 node scripts/probes/client.js`. `PP_OUT` sets the tokens written after the long prompt, and `PAR=4 PAR_TG=64` sends four requests at once.
+
 Environment variables:
 
 | Script | Variable | Default | Meaning |
@@ -362,6 +472,7 @@ Run the scripts from a machine or container that can reach the server. To keep a
 - `scripts/usecases/scorer-cases.json`: answers written in other formats, each with the verdict it should get.
 - `results/usecases.json`: the use-case summary used in the write-up.
 - `results/raw/usecases-*.jsonl`: the nine use-case runs, with full answers, timings and each answer's verdict and reason.
+- `scripts/probes/client.js` and `results/raw/probes.jsonl`: the speed probes (thread sweep, KV cache, Qwen3 1.7B on the same server, 4 slots), with each run's server settings.
 - `images/`: the two results images.
 
 ## Links
