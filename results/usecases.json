@@ -1,0 +1,778 @@
+{
+ "date": "2026-10-12",
+ "suite": "use cases v1: 48 tasks, 8 each in chat, reasoning, code, debugging, summaries, creative writing",
+ "useCases": {
+  "chat": "Chat / Q&A",
+  "reason": "Reasoning",
+  "code": "Code gen",
+  "debug": "Debug code",
+  "summary": "Summarization",
+  "creative": "Creativity"
+ },
+ "scoring": "greedy decoding; code and fixes run against unit tests in a sandbox; other answers checked by fixed rules (score.py)",
+ "speedNote": "writeTokS/readTokS are the server-reported medians per use case; answerS is the median wall-clock time per answer, without the model being loaded. Mac timings are not comparable with the NAS and are not used.",
+ "models": [
+  {
+   "model": "Bonsai-8B Q1_0",
+   "ranOn": "NAS CPU",
+   "runtime": "llama-server, PrismML fork prism-b10772",
+   "format": "GGUF Q1_0",
+   "fileGB": 1.16,
+   "correct": 36,
+   "of": 48,
+   "byUseCase": {
+    "chat": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": 8.85,
+     "readTokS": 12.0,
+     "answerS": 3.55,
+     "outTokens": 7.5,
+     "promptTokens": 47.0
+    },
+    "reason": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": 8.55,
+     "readTokS": 11.8,
+     "answerS": 14.7,
+     "outTokens": 84.0,
+     "promptTokens": 79.0
+    },
+    "code": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": 8.3,
+     "readTokS": 11.8,
+     "answerS": 23.65,
+     "outTokens": 112.5,
+     "promptTokens": 148.0
+    },
+    "debug": {
+     "pass": 6,
+     "n": 8,
+     "writeTokS": 8.55,
+     "readTokS": 11.75,
+     "answerS": 14.05,
+     "outTokens": 48.0,
+     "promptTokens": 132.5
+    },
+    "summary": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": 8.4,
+     "readTokS": 11.7,
+     "answerS": 21.2,
+     "outTokens": 73.5,
+     "promptTokens": 176.5
+    },
+    "creative": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": 8.85,
+     "readTokS": 12.05,
+     "answerS": 6.5,
+     "outTokens": 31.0,
+     "promptTokens": 68.5
+    }
+   },
+   "missed": [
+    "r6",
+    "g1",
+    "g6",
+    "g7",
+    "d5",
+    "d8",
+    "s1",
+    "s4",
+    "s5",
+    "w6",
+    "w7",
+    "w8"
+   ],
+   "hitTokenCap": [],
+   "reasoned": false,
+   "answerSecondsTotal": 747.4,
+   "pauses": 0,
+   "rerun": []
+  },
+  {
+   "model": "Qwen3 1.7B Q4_K_M (QNAP)",
+   "ranOn": "NAS CPU",
+   "runtime": "Ollama, qwen3:1.7b",
+   "format": "Q4_K_M",
+   "fileGB": 1.4,
+   "correct": 30,
+   "of": 48,
+   "byUseCase": {
+    "chat": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": 22.7,
+     "readTokS": 112.85,
+     "answerS": 0.94,
+     "outTokens": 7.5,
+     "promptTokens": 47.0
+    },
+    "reason": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": 18.65,
+     "readTokS": 96.0,
+     "answerS": 3.4,
+     "outTokens": 42.0,
+     "promptTokens": 79.0
+    },
+    "code": {
+     "pass": 4,
+     "n": 8,
+     "writeTokS": 18.05,
+     "readTokS": 85.6,
+     "answerS": 7.94,
+     "outTokens": 105.5,
+     "promptTokens": 148.0
+    },
+    "debug": {
+     "pass": 4,
+     "n": 8,
+     "writeTokS": 18.4,
+     "readTokS": 85.85,
+     "answerS": 4.29,
+     "outTokens": 50.0,
+     "promptTokens": 132.5
+    },
+    "summary": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": 18.1,
+     "readTokS": 82.95,
+     "answerS": 5.21,
+     "outTokens": 49.5,
+     "promptTokens": 176.5
+    },
+    "creative": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": 19.95,
+     "readTokS": 105.75,
+     "answerS": 1.9,
+     "outTokens": 22.5,
+     "promptTokens": 68.5
+    }
+   },
+   "missed": [
+    "c7",
+    "r2",
+    "r6",
+    "r7",
+    "g1",
+    "g3",
+    "g6",
+    "g7",
+    "d1",
+    "d5",
+    "d6",
+    "d8",
+    "s2",
+    "s3",
+    "s6",
+    "w4",
+    "w7",
+    "w8"
+   ],
+   "hitTokenCap": [],
+   "reasoned": false,
+   "answerSecondsTotal": 198.6,
+   "pauses": 0,
+   "rerun": [
+    "s3"
+   ]
+  },
+  {
+   "model": "Qwen3 1.7B Q4_K_M (Mac)",
+   "ranOn": "Mac",
+   "runtime": "LM Studio (llama.cpp)",
+   "format": "GGUF Q4_K_M",
+   "fileGB": 1.28,
+   "correct": 27,
+   "of": 48,
+   "byUseCase": {
+    "chat": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.1,
+     "outTokens": 11.5,
+     "promptTokens": 43.0
+    },
+    "reason": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.25,
+     "outTokens": 51.0,
+     "promptTokens": 75.0
+    },
+    "code": {
+     "pass": 3,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.5,
+     "outTokens": 103.0,
+     "promptTokens": 144.0
+    },
+    "debug": {
+     "pass": 3,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.3,
+     "outTokens": 54.0,
+     "promptTokens": 128.5
+    },
+    "summary": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.3,
+     "outTokens": 60.0,
+     "promptTokens": 172.5
+    },
+    "creative": {
+     "pass": 4,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.1,
+     "outTokens": 24.5,
+     "promptTokens": 64.5
+    }
+   },
+   "missed": [
+    "c7",
+    "r2",
+    "r5",
+    "r6",
+    "g1",
+    "g3",
+    "g5",
+    "g6",
+    "g7",
+    "d1",
+    "d2",
+    "d5",
+    "d6",
+    "d8",
+    "s2",
+    "s4",
+    "s6",
+    "w4",
+    "w6",
+    "w7",
+    "w8"
+   ],
+   "hitTokenCap": [],
+   "reasoned": false,
+   "answerSecondsTotal": 13.1,
+   "pauses": 0,
+   "rerun": []
+  },
+  {
+   "model": "Qwen3 4B Q4_K_M",
+   "ranOn": "Mac",
+   "runtime": "LM Studio (llama.cpp)",
+   "format": "GGUF Q4_K_M",
+   "fileGB": 2.5,
+   "correct": 37,
+   "of": 48,
+   "byUseCase": {
+    "chat": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.2,
+     "outTokens": 15.5,
+     "promptTokens": 43.0
+    },
+    "reason": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.8,
+     "outTokens": 93.5,
+     "promptTokens": 75.0
+    },
+    "code": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.9,
+     "outTokens": 105.5,
+     "promptTokens": 144.0
+    },
+    "debug": {
+     "pass": 6,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.55,
+     "outTokens": 55.0,
+     "promptTokens": 128.5
+    },
+    "summary": {
+     "pass": 6,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.65,
+     "outTokens": 64.5,
+     "promptTokens": 172.5
+    },
+    "creative": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.35,
+     "outTokens": 31.5,
+     "promptTokens": 64.5
+    }
+   },
+   "missed": [
+    "r2",
+    "g1",
+    "g6",
+    "g7",
+    "d1",
+    "d6",
+    "s1",
+    "s8",
+    "w6",
+    "w7",
+    "w8"
+   ],
+   "hitTokenCap": [],
+   "reasoned": false,
+   "answerSecondsTotal": 29.7,
+   "pauses": 0,
+   "rerun": []
+  },
+  {
+   "model": "Qwen3 8B Q4_K_M",
+   "ranOn": "Mac",
+   "runtime": "LM Studio (llama.cpp)",
+   "format": "GGUF Q4_K_M",
+   "fileGB": 5.03,
+   "correct": 40,
+   "of": 48,
+   "byUseCase": {
+    "chat": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.25,
+     "outTokens": 14.5,
+     "promptTokens": 43.0
+    },
+    "reason": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.8,
+     "outTokens": 54.0,
+     "promptTokens": 75.0
+    },
+    "code": {
+     "pass": 6,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 1.65,
+     "outTokens": 104.5,
+     "promptTokens": 144.0
+    },
+    "debug": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.95,
+     "outTokens": 53.5,
+     "promptTokens": 128.5
+    },
+    "summary": {
+     "pass": 6,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 1.15,
+     "outTokens": 66.0,
+     "promptTokens": 172.5
+    },
+    "creative": {
+     "pass": 6,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.6,
+     "outTokens": 37.0,
+     "promptTokens": 64.5
+    }
+   },
+   "missed": [
+    "r6",
+    "g1",
+    "g6",
+    "d8",
+    "s4",
+    "s5",
+    "w7",
+    "w8"
+   ],
+   "hitTokenCap": [],
+   "reasoned": false,
+   "answerSecondsTotal": 48.3,
+   "pauses": 0,
+   "rerun": []
+  },
+  {
+   "model": "Llama 3.2 3B Q4_K_M",
+   "ranOn": "Mac",
+   "runtime": "LM Studio (llama.cpp)",
+   "format": "GGUF Q4_K_M",
+   "fileGB": 2.02,
+   "correct": 40,
+   "of": 48,
+   "byUseCase": {
+    "chat": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.1,
+     "outTokens": 12.0,
+     "promptTokens": 61.0
+    },
+    "reason": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.85,
+     "outTokens": 120.5,
+     "promptTokens": 92.5
+    },
+    "code": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.8,
+     "outTokens": 102.0,
+     "promptTokens": 158.5
+    },
+    "debug": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.4,
+     "outTokens": 46.5,
+     "promptTokens": 144.0
+    },
+    "summary": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.4,
+     "outTokens": 48.0,
+     "promptTokens": 184.0
+    },
+    "creative": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.2,
+     "outTokens": 24.5,
+     "promptTokens": 82.0
+    }
+   },
+   "missed": [
+    "c3",
+    "r6",
+    "r7",
+    "r8",
+    "g1",
+    "g5",
+    "g7",
+    "s2"
+   ],
+   "hitTokenCap": [],
+   "reasoned": false,
+   "answerSecondsTotal": 25.3,
+   "pauses": 0,
+   "rerun": []
+  },
+  {
+   "model": "Gemma 4 E4B",
+   "ranOn": "Mac",
+   "runtime": "LM Studio (llama.cpp)",
+   "format": "GGUF Q4_K_M",
+   "fileGB": 6.33,
+   "correct": 40,
+   "of": 48,
+   "byUseCase": {
+    "chat": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.1,
+     "outTokens": 3.5,
+     "promptTokens": 39.0
+    },
+    "reason": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 2.85,
+     "outTokens": 226.5,
+     "promptTokens": 71.5
+    },
+    "code": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 17.8,
+     "outTokens": 507.5,
+     "promptTokens": 146.0
+    },
+    "debug": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 13.15,
+     "outTokens": 513.0,
+     "promptTokens": 132.0
+    },
+    "summary": {
+     "pass": 6,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 7.4,
+     "outTokens": 309.5,
+     "promptTokens": 167.5
+    },
+    "creative": {
+     "pass": 6,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 0.6,
+     "outTokens": 28.0,
+     "promptTokens": 61.0
+    }
+   },
+   "missed": [
+    "c7",
+    "g5",
+    "g6",
+    "g7",
+    "s1",
+    "s5",
+    "w6",
+    "w8"
+   ],
+   "hitTokenCap": [
+    "g5",
+    "g6",
+    "g7"
+   ],
+   "reasoned": true,
+   "answerSecondsTotal": 388.2,
+   "pauses": 0,
+   "rerun": []
+  },
+  {
+   "model": "Qwen3.8 27B",
+   "ranOn": "Mac",
+   "runtime": "LM Studio (MLX)",
+   "format": "MLX 4-bit",
+   "fileGB": 16.08,
+   "correct": 41,
+   "of": 48,
+   "byUseCase": {
+    "chat": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 3.35,
+     "outTokens": 52.5,
+     "promptTokens": 83.0
+    },
+    "reason": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 5.25,
+     "outTokens": 82.0,
+     "promptTokens": 116.0
+    },
+    "code": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 23.25,
+     "outTokens": 415.5,
+     "promptTokens": 186.5
+    },
+    "debug": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 9.8,
+     "outTokens": 161.0,
+     "promptTokens": 172.0
+    },
+    "summary": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 19.3,
+     "outTokens": 338.0,
+     "promptTokens": 213.0
+    },
+    "creative": {
+     "pass": 6,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 10.65,
+     "outTokens": 186.5,
+     "promptTokens": 104.5
+    }
+   },
+   "missed": [
+    "g6",
+    "d5",
+    "s1",
+    "s4",
+    "s8",
+    "w6",
+    "w7"
+   ],
+   "hitTokenCap": [
+    "g6",
+    "d5",
+    "s1",
+    "s4",
+    "s8",
+    "w6"
+   ],
+   "reasoned": true,
+   "answerSecondsTotal": 810.6,
+   "pauses": 0,
+   "rerun": []
+  },
+  {
+   "model": "Gemma 4 31B",
+   "ranOn": "Mac",
+   "runtime": "LM Studio (llama.cpp)",
+   "format": "GGUF Q4_K_M",
+   "fileGB": 19.89,
+   "correct": 44,
+   "of": 48,
+   "byUseCase": {
+    "chat": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 7.1,
+     "outTokens": 81.5,
+     "promptTokens": 39.0
+    },
+    "reason": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 28.2,
+     "outTokens": 301.0,
+     "promptTokens": 71.5
+    },
+    "code": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 50.5,
+     "outTokens": 652.0,
+     "promptTokens": 146.0
+    },
+    "debug": {
+     "pass": 8,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 30.45,
+     "outTokens": 318.0,
+     "promptTokens": 132.0
+    },
+    "summary": {
+     "pass": 7,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 35.05,
+     "outTokens": 395.0,
+     "promptTokens": 167.5
+    },
+    "creative": {
+     "pass": 5,
+     "n": 8,
+     "writeTokS": null,
+     "readTokS": null,
+     "answerS": 21.25,
+     "outTokens": 254.5,
+     "promptTokens": 61.0
+    }
+   },
+   "missed": [
+    "s5",
+    "w6",
+    "w7",
+    "w8"
+   ],
+   "hitTokenCap": [
+    "s5",
+    "w6",
+    "w8"
+   ],
+   "reasoned": true,
+   "answerSecondsTotal": 1546.4,
+   "pauses": 0,
+   "rerun": []
+  }
+ ]
+}

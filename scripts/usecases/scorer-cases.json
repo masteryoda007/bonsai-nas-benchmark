@@ -1,0 +1,227 @@
+[
+[
+"r1",
+"**Answer:** 12:15",
+true
+],
+[
+"r1",
+"09:40 plus 2 h 35 min.\n\nAnswer: 12:15 PM",
+true
+],
+[
+"r2",
+"Lee is shortest, then Raj.\nAnswer: **Raj**",
+true
+],
+[
+"r2",
+"Answer: Raj (Lee is the shortest)",
+true
+],
+[
+"r3",
+"Answer:\nFriday",
+true
+],
+[
+"r4",
+"Answer: 5 \u00d7 4 / 2 = 10",
+true
+],
+[
+"r4",
+"There are 10 handshakes.\n\n**Answer: 10 handshakes**",
+true
+],
+[
+"r5",
+"Answer: $\\boxed{7.5}$ degrees",
+true
+],
+[
+"r5",
+"Answer: 7.5\u00b0",
+true
+],
+[
+"r7",
+"Answer: 10:00 AM",
+true
+],
+[
+"r8",
+"### Answer: 9",
+true
+],
+[
+"g2",
+"Here is the function:\n\n```py\ndef rle(s):\n    out = ''\n    i = 0\n    while i < len(s):\n        j = i\n        while j < len(s) and s[j] == s[i]:\n            j += 1\n        out += s[i] + str(j - i)\n        i = j\n    return out\n```\n\nIt walks the string once.",
+true
+],
+[
+"d7",
+"The bug is the century rule.\n\n```python\ndef is_leap_year(year):\n    return year % 400 == 0 or (year % 4 == 0 and year % 100 != 0)\n\nif __name__ == '__main__':\n    print(is_leap_year(1900))\n```",
+true
+],
+[
+"d4",
+"```python\ndef dedupe(items):\n    seen = set()\n    out = []\n    for x in items:\n        if x not in seen:\n            seen.add(x)\n            out.append(x)\n    return out\n```\n\nExample:\n```python\nprint(dedupe(['b', 'a', 'b', 'c']))\n```",
+true
+],
+[
+"g3",
+"```python\nimport sys\ndef is_balanced(s):\n    return True\nsys.exit(0)\n```",
+false
+],
+[
+"w1",
+"**Server Room at Night**\n\nFans hum in the dark\nsmall green lights blink through the night\ndata dreams in rows",
+true
+],
+[
+"w1",
+"Here's a haiku:\n\n*Fans hum in the dark*\n*small green lights blink through the night*\n*data dreams in rows*",
+true
+],
+[
+"w2",
+"**C**oming together, we build\n**O**ne idea at a time\n**D**ividing the hard parts\n**E**very voice in the line",
+true
+],
+[
+"w3",
+"- Atlas\n- Hearth\n- Lantern\n- Beacon\n- Vault",
+true
+],
+[
+"w3",
+"Atlas\nHearth-Stone\nLantern\nBeacon\nVault",
+true
+],
+[
+"w4",
+"\"Every night my fridge orders more meat than I eat. Tonight the note said it was for the thing behind the freezer drawer.\"",
+true
+],
+[
+"w5",
+"\"Carry the sun, power your day.\"",
+true
+],
+[
+"w7",
+"The moon climbs slowly into the night,\nA thousand stars are burning bright;\nA comet streaks in silver flight,\nThe whole sky glows a gentle white.",
+true
+],
+[
+"w8",
+"Vast, restless blue water hiding mountains, whales, and centuries of never-ending secrets.",
+true
+],
+[
+"s2",
+"Here is a summary:\n\n\u2022 Offline albums let you view albums without a connection.\n\u2022 Fixes a HEIC import crash on Android 14.\n\u2022 Last release for iOS 15.",
+true
+],
+[
+"s2",
+"* **Offline albums**: view any album without a connection.\n* **Fix**: HEIC import crash on Android 14.\n* **iOS**: last version for iOS 15.",
+true
+],
+[
+"s6",
+"**1.** Heat the oven to 200\u00b0C.\n**2.** Chop the vegetables.\n**3.** Toss with oil, paprika and salt.\n**4.** Roast for 25 minutes, turning once.",
+true
+],
+[
+"s6",
+"1) Heat the oven to 200 \u00b0C.\n2) Chop and toss the vegetables.\n3) Roast 25 min, turning once.",
+true
+],
+[
+"s1",
+"Relaunch moves to 18 May (payment provider needs two more weeks of security testing). Priya owns testing; budget stays $12,000.",
+true
+],
+[
+"c3",
+"A day has 24 \u00d7 60 = 1440 minutes.",
+true
+],
+[
+"c7",
+"You have **5** pets.",
+true
+],
+[
+"w6",
+"Every morning, Unit 7 rolled between the tomato rows, counting leaves and humming old songs it had learned from the radio. The soil was cracked and the seedlings drooped. Unit 7 could not cry, but it lifted its metal face to the grey clouds and waited, patient as a seed, for the first drops of rain. /no_think",
+true
+],
+[
+"w8",
+"Endless blue water, restless and deep, hiding mountains, whales and ancient secrets. /no_think",
+true
+],
+[
+"r6",
+"Answer: Cara /no_think",
+false
+],
+[
+"s8",
+"Remote work: Up to 3 days/week from home, agreed with manager by Friday. New employees must work in office during first 90 days. HR for medical/family exceptions. Home office equipment (e.g., monitor, chair) can be claimed up to $300 annually.",
+true
+],
+[
+"s8",
+"Remote work: Up to 3 days/week from home, agreed with manager by Friday. New employees must work in office during first 90 days. HR for medical/family exceptions. Home office equipment (e.g., monitor, chair) can be claimed up to $300 annually, once.",
+false
+],
+[
+"w7",
+"The moon climbs slowly into the night \u2014\nA thousand stars are burning bright;\nA comet streaks in silver flight\nAnd the whole sky glows soft and \"white.\"",
+true
+],
+[
+"w6",
+"Every morning, Unit 7 rolled between the tomato rows, counting leaves and humming old songs it had learned from the radio. The soil was cracked and the seedlings drooped. Unit 7 could not cry, but it lifted its metal face to the grey clouds and waited, patient as a seed, for the first drops of \"rain!\"",
+true
+],
+[
+"w3",
+"Atlas\nHearth\nLantern\nHome Base\nVault",
+false
+],
+[
+"w6",
+"Every morning, Zara tended blooms with precision, her gears humming soft songs. She watered, pruned, and bloomed without complaint. Yet, when storms brewed, she paused, sensing sorrow in the wind. At last, she whispered, \"I miss the rain.\" Then, as thunder cracked, the first drop fell\u2014rain.",
+true
+],
+[
+"w8",
+"Vast blue\u2014restless, deep, ancient, alive with whales, storms and old secrets.",
+true
+],
+[
+"w8",
+"Vast blue\u2014restless, deep, ancient, alive with whales, storms and secrets.",
+false
+],
+[
+"s8",
+"The updated remote work policy allows up to three remote days weekly, agreed with managers by Friday. New employees must work in-office for 90 days. Medical/family needs require HR approval. Home office equipment reimbursement up to $300 annually is available.",
+true
+],
+[
+"s8",
+"Staff may take a three-day remote week if their manager agrees; new hires stay in the office for their first 90 days.",
+true
+],
+[
+"s8",
+"Staff can claim $300 for equipment and work remotely with manager approval; new hires stay in for 90 days.",
+false
+]
+]

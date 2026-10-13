@@ -1,6 +1,6 @@
 # Bonsai-8B (1-bit) on a NAS CPU
 
-Speed, stress and quality measurements of PrismML's 1-bit [Bonsai-8B](https://huggingface.co/prism-ml/Bonsai-8B-gguf) on a NAS with no GPU, next to ordinary 4-bit models. I ran these in my home lab on 11 and 12 October 2026. This repo has the two scripts, the raw output and the summary I wrote up.
+Speed, stress and quality measurements of PrismML's 1-bit [Bonsai-8B](https://huggingface.co/prism-ml/Bonsai-8B-gguf) on a NAS with no GPU, next to ordinary 4-bit models. I ran these in my home lab on 11 and 12 October 2026. This repo has the scripts, the raw output and the summary I wrote up.
 
 PrismML's model card and whitepaper give no x86 CPU speeds for this model. The only other x86 result for the 8B I found is a [community run](https://github.com/PrismML-Eng/Bonsai-demo/blob/main/community-benchmarks/bonsai/cpu-i3-7100-linux-proxmox.md) on an i3-7100 VM with an older build (3.61 tok/s writing). These are mine, from one machine, so treat them as one data point.
 
@@ -10,6 +10,11 @@ PrismML's model card and whitepaper give no x86 CPU speeds for this model. The o
 - A 4,096-token prompt takes 11.6 minutes. Four concurrent requests queue behind one slot and all succeed. Ten minutes of back-to-back requests: 20 requests, 0 errors, 8.3-8.6 tokens/s throughout.
 - On the same 36 auto-checked tasks: Bonsai-8B 32, Qwen3 8B Q4_K_M 33, Qwen3 4B Q4_K_M 35, Qwen3 1.7B Q4_K_M 33 (on the NAS) and 32 (on the Mac).
 - On this CPU, Qwen3 1.7B Q4_K_M (1.4 GB in Ollama) writes about 2x and reads about 5-6x faster than Bonsai.
+- On 48 everyday tasks, 8 each for chat, reasoning, code, debugging, summaries and creative writing, with code run against unit tests: Bonsai-8B 36, and Qwen3 1.7B Q4_K_M 30 on the same NAS. On the Mac, for correctness only: Qwen3 4B 37, Qwen3 8B 40. Bonsai writes at 8.3-8.9 tokens/s in every use case; the median wait per answer runs from 3.6 s for chat to 24 s for a short function.
+
+![Results of the speed, stress and 36-task tests](images/results-card.png)
+
+![Results of the 48-task use-case test](images/usecase-card.png)
 
 ## Hardware and software
 
@@ -80,6 +85,48 @@ while true; do printf '%s ' "$(date +%T)"; curl -s -o /dev/null -w '%{http_code}
 - One run per model. Every answer is checked by code, not by eye and not by another model.
 - Bonsai and one Qwen3 1.7B run were on the NAS. Everything else ran on the Mac in LM Studio, quality only.
 
+### Use cases: `scripts/usecases/`
+
+- 48 tasks, 8 in each of six groups: chat and Q&A, reasoning puzzles, writing a Python function, fixing a buggy Python function, summarising a short text, and creative writing. I took the groups from speed charts for local models, which often split results this way. I wrote the tasks, but a few reasoning puzzles are old classics (the 17 sheep, the clock angle at 3:15, five people shaking hands), so some models may have seen them.
+- Code and bug fixes: the reply's code is run against unit tests (`check.python` in `tasks.json`). Each bug-fix task shows the broken function and what goes wrong. A run passes only if every assert holds and the output includes the line the harness prints after the last test, so code that exits early can't pass.
+- Everything else is checked against rules in `score.py`: the final `Answer:` line for reasoning; required facts plus a word limit or a list format for summaries; line counts, initials, line endings spelled like "light", word counts and last words for creative writing. The rules check constraints, not taste.
+- `score.sh` runs `score.py` in a throwaway `python:3.13-slim` container: no network, a read-only filesystem, a 64 MB `/tmp`, 512 MB of RAM, at most 128 processes, no capabilities and an unprivileged user.
+- Words are counted the way a reader counts them: split at spaces and at em or en dashes, while slashes and hyphens join (`days/week` and `sun-kissed` are one word). A title, or a first line ending in a colon such as "Here is the summary:", is ignored.
+- Every task has a reference answer that must pass and wrong answers that must fail (`--selftest`: 48 tasks, 115 answers). `scorer-cases.json` has 45 more answers in the forms models really use (bold `**Answer:**`, `12:15 PM`, a line break after `Answer:`), each with the verdict it should get (`--cases`).
+- The same system prompt and user prompts for every model, except that where thinking is switched off that way, the last user message ends in ` /no_think` (Bonsai and the Qwen models in LM Studio; Qwen3 1.7B in Ollama gets `think: false` instead). Temperature 0, with other sampler settings left at each server's defaults. Output caps: 384 tokens for chat, 1,536 for reasoning, code and debugging, 512 for summaries and creative writing, and reasoning counts against them. Thinking off as in the 36-task run, but Qwen3.8 27B reasoned on all 48 tasks anyway, and the two Gemma models, which got no switch, on 28 (E4B) and 48 (31B).
+- Speed per use case comes from the NAS runs: server-reported reading and writing rates, and the wall-clock time per answer without Ollama's model loading. Medians per use case. Both servers reuse the cached system prompt between tasks. llama-server leaves those tokens out of its reading rate, so Bonsai's rates are real. Ollama counts them while timing only the rest, so Qwen3 1.7B's reading rates here run high: 58 tokens/s on its first, uncached task, against a median of 90. Fitted across all 48 prompts it read about 71 tokens/s, in line with the five-task test above; use that, not the table.
+- Bonsai and Qwen3 1.7B ran on the NAS (llama-server and Ollama, as above). Qwen3 1.7B also ran on the Mac, and the other models ran only there, for correctness. The two Qwen3 1.7B runs, with different files, runtimes and thinking switches, scored 30 and 27 and disagreed on 7 of the 48 tasks, so a gap of a few tasks between models on different machines is noise.
+- On the NAS, the runner checked the activity of the other web app on the box before each task and would have paused while it was in use. It never paused.
+
+Checking the scorer: before publishing, I had every model's verdicts reviewed answer by answer, looking for correct answers the rules rejected and wrong answers they accepted. That changed the rules in eight places, applied to every model:
+
+- `s1`: the reason for the delay may be given as the security testing, not only as the payment provider. Found on a trial run before the other models ran (Qwen3 1.7B on the Mac). The relaxed rule also decides `s1` for Gemma 4 31B, Llama 3.2 3B, Qwen3 8B and Qwen3 1.7B on the NAS; their runs came after the change, so the table below counts it only for the trial run.
+- Word counts: the first version split words at slashes and colons, so `days/week` counted as two words. Three answers that were exactly at their limit now pass (Bonsai `s8`, Qwen3 4B `s5`, and Qwen3 8B `s8`, which also needed the next change).
+- `s8`: the fact check required "three days" written as such; it now accepts "three remote days" (Qwen3 8B).
+- `w7`: a line ending on "light" itself no longer counts as a rhyme for "light" (Qwen3 4B, Qwen3 8B, Qwen3.8 27B, Gemma 4 31B, Qwen3 1.7B on the Mac).
+- `s2`: `- - text` is a list inside a list, not a bullet, so those answers now fail (both Qwen3 1.7B runs, Llama 3.2 3B).
+- `s3`: a summary saying the customer "ordered a cracked jar" gets the order wrong; she ordered a blender (Qwen3 1.7B on the NAS).
+- `c3`: an answer that gives 1,440 minutes and then a second, wrong figure fails (Llama 3.2 3B).
+- Cut-off answers: a text answer that stops at the token limit now fails even if what it managed to say passes the rules (Qwen3.8 27B `s4`, which stopped mid-sentence). Code is still judged by its tests.
+
+Two doubtful passes were left as passes, though they are close to the `s3` slip: "HR approval" for "speak to HR" (Qwen3 8B `s8`), and a release-note bullet that says iOS support ends and then corrects itself in brackets (Gemma 4 E4B `s2`). Failing them too would take one task off each of those two models.
+
+What the fixes did to each score (the rules when the runs started, then now):
+
+| Model | First rules | Now | Changed |
+|---|---:|---:|---|
+| Gemma 4 31B | 45 | 44 | lost `w7` |
+| Qwen3.8 27B | 43 | 41 | lost `s4`, `w7` |
+| Llama 3.2 3B | 42 | 40 | lost `c3`, `s2` |
+| Qwen3 8B | 40 | 40 | gained `s8`, lost `w7` |
+| Gemma 4 E4B | 40 | 40 | - |
+| Qwen3 4B | 37 | 37 | gained `s5`, lost `w7` |
+| Bonsai-8B | 35 | 36 | gained `s8` |
+| Qwen3 1.7B, NAS | 32 | 30 | lost `s2`, `s3` |
+| Qwen3 1.7B, Mac | 28 | 27 | gained `s1`, lost `s2`, `w7` |
+
+None of the stricter rules changed Bonsai's score. On the NAS, Bonsai led Qwen3 1.7B 35 to 32 under the first rules and 36 to 30 now. The reasoning, code and debugging tasks, where Bonsai's lead comes from, were not affected by any fix.
+
 ## Results
 
 ### Quality: the same 36 tasks on every model
@@ -97,7 +144,7 @@ while true; do printf '%s ' "$(date +%T)"; curl -s -o /dev/null -w '%{http_code}
 | Llama 3.2 3B | GGUF Q4_K_M | 2.02 GB | Mac | **28** | 12/12 | 5/8 | 4/8 | 7/8 | 41.2 | j1, j4, j7, i1, i2, i4, i7, k8 |
 
 ¹ Includes the BF16 vision projector file that ships with the model (0.99 GB for E4B, 1.20 GB for 31B).
-² These two spent 37 to 206 output tokens on one-word answers, so they were reasoning before answering. Treat their scores as a reference, not a like-for-like comparison.
+² These two spent 37 to 206 output tokens on one-word answers, so they were reasoning before answering. Gemma 4 E4B did the same on 9 of its 12 math problems (131 to 392 output tokens for a one-line answer). Treat these three scores as a reference, not a like-for-like comparison.
 
 GGUF files on the Mac are the Q4_K_M builds from LM Studio's catalogue (lmstudio-community).
 
@@ -111,6 +158,46 @@ What the misses were:
 - `m5` for Gemma 4 31B hit the 512-token limit before its final answer. `i8` for Qwen3.8 27B was an empty answer after 511 tokens. Both count as misses, the same rule as everyone else.
 
 Rescoring: after the first runs I fixed two checkers. `k8` now accepts LaTeX `\times`, and `i5` accepts 10 as "between 1 and 10". Three saved answers were rescored and now pass: Gemma 4 E4B `k8`, Qwen3 1.7B (Mac) `k8` and Llama 3.2 3B `i5`. The raw files keep the original `pass` flags; `results/results.json` has the corrected scores, and `scripts/eval.js` has the fixed checkers.
+
+### Use cases: 48 tasks in six groups
+
+| Model | Format | File size | Ran on | Score | Chat | Reasoning | Code | Debug | Summaries | Creative | Reasoned on | Hit the cap | Missed |
+|---|---|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|
+| Gemma 4 31B | GGUF Q4_K_M | 19.89 GB¹ | Mac | **44** | 8/8 | 8/8 | 8/8 | 8/8 | 7/8 | 5/8 | 48/48 | s5, w6, w8 | s5, w6, w7, w8 |
+| Qwen3.8 27B | MLX 4-bit | 16.08 GB | Mac | **41** | 8/8 | 8/8 | 7/8 | 7/8 | 5/8 | 6/8 | 48/48 | g6, d5, s1, s4, s8, w6 | g6, d5, s1, s4, s8, w6, w7 |
+| Qwen3 8B | GGUF Q4_K_M | 5.03 GB | Mac | **40** | 8/8 | 7/8 | 6/8 | 7/8 | 6/8 | 6/8 | 0/48 | - | r6, g1, g6, d8, s4, s5, w7, w8 |
+| Gemma 4 E4B | GGUF Q4_K_M | 6.33 GB¹ | Mac | **40** | 7/8 | 8/8 | 5/8 | 8/8 | 6/8 | 6/8 | 28/48 | g5, g6, g7 | c7, g5, g6, g7, s1, s5, w6, w8 |
+| Llama 3.2 3B | GGUF Q4_K_M | 2.02 GB | Mac | **40** | 7/8 | 5/8 | 5/8 | 8/8 | 7/8 | 8/8 | 0/48 | - | c3, r6, r7, r8, g1, g5, g7, s2 |
+| Qwen3 4B | GGUF Q4_K_M | 2.50 GB | Mac | **37** | 8/8 | 7/8 | 5/8 | 6/8 | 6/8 | 5/8 | 0/48 | - | r2, g1, g6, g7, d1, d6, s1, s8, w6, w7, w8 |
+| **Bonsai-8B** | GGUF Q1_0 | 1.16 GB | NAS CPU, PrismML fork | **36** | 8/8 | 7/8 | 5/8 | 6/8 | 5/8 | 5/8 | 0/48 | - | r6, g1, g6, g7, d5, d8, s1, s4, s5, w6, w7, w8 |
+| Qwen3 1.7B | Ollama `qwen3:1.7b` (Q4_K_M) | 1.4 GB | NAS CPU, Ollama | **30** | 7/8 | 5/8 | 4/8 | 4/8 | 5/8 | 5/8 | 0/48 | - | c7, r2, r6, r7, g1, g3, g6, g7, d1, d5, d6, d8, s2, s3, s6, w4, w7, w8 |
+| Qwen3 1.7B | GGUF Q4_K_M | 1.28 GB | Mac | **27** | 7/8 | 5/8 | 3/8 | 3/8 | 5/8 | 4/8 | 0/48 | - | c7, r2, r5, r6, g1, g3, g5, g6, g7, d1, d2, d5, d6, d8, s2, s4, s6, w4, w6, w7, w8 |
+
+¹ Includes the BF16 vision projector file, as above.
+
+"Reasoned on" counts the tasks where the server returned reasoning text before the answer. Qwen3.8 27B reasoned on every task even with thinking switched off, as in the 36-task run; Gemma 4 E4B reasoned on 28 here, and on most of its math problems in the 36-task run too, judging by its token counts. Thinking used part of the token budget, and a reply that hit the cap before its answer counts as a miss, so these three scores are a floor.
+
+Speed on the NAS by use case (medians per answer; time per answer without Ollama loading the model). Qwen3 1.7B's reading rates here are inflated by Ollama's prompt cache; see Methodology.
+
+| Use case | Bonsai-8B correct | writing tok/s | reading tok/s | time per answer | Qwen3 1.7B correct | writing tok/s | reading tok/s | time per answer |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Chat / Q&A | 8/8 | 8.8 | 12.0 | 3.6 s | 7/8 | 22.7 | 112.8 | 0.9 s |
+| Reasoning | 7/8 | 8.6 | 11.8 | 14.7 s | 5/8 | 18.6 | 96.0 | 3.4 s |
+| Code gen | 5/8 | 8.3 | 11.8 | 23.6 s | 4/8 | 18.0 | 85.6 | 7.9 s |
+| Debug code | 6/8 | 8.6 | 11.8 | 14.1 s | 4/8 | 18.4 | 85.8 | 4.3 s |
+| Summarization | 5/8 | 8.4 | 11.7 | 21.2 s | 5/8 | 18.1 | 82.9 | 5.2 s |
+| Creativity | 5/8 | 8.9 | 12.1 | 6.5 s | 5/8 | 19.9 | 105.8 | 1.9 s |
+| All 48 | 36/48 | 8.5 | 11.8 | 14.3 s | 30/48 | 18.8 | 90.3 | 4.0 s |
+
+Total answering time for the 48 tasks: Bonsai-8B 747 s (12.5 min), Qwen3 1.7B 199 s (3.3 min).
+
+What Bonsai-8B missed:
+
+- `r6`, who finished third: it worked out the right order (Ada, Cara, Eve, Dan, Ben) and then answered Cara.
+- `g1`, `g6`, `g7`: `parse_duration` crashed on `'1h30m'`, the CSV parser kept the quote characters, and the Luhn check doubled the wrong digits.
+- `d5`, `d8`: both fixes came back unchanged, the original bug included.
+- `s1`, `s4`, `s5`: the summaries ran to 73, 76 and 56 words against limits of 40, 35 and 45.
+- `w6`, `w7`, `w8`: the story ended on "fell" instead of "rain", a line meant to rhyme with "light" ended on "glow", and the 12-word description of the ocean had 18 words.
 
 ### Speed on the NAS: Bonsai-8B
 
@@ -162,6 +249,10 @@ All ten passed their checks. Qwen3 1.7B on a 1,285-token prompt: reading 54 tok/
 - The `answer` and `sample` fields in the raw files are cut to 140 and 160 characters with whitespace collapsed. They are for reading, not for re-scoring; re-run `eval.js` to re-score.
 - Speed results come from the PrismML fork. Mainline llama.cpp has run Q1_0 on CPU since April 2026 (x86 AVX2 kernels since 20 April), but it lacks the fork's x86 repacked kernels. I did not compare the two.
 - My explanation of the speed is arithmetic, not profiling. Bonsai moves about 1 GB of weights per token, roughly 9-10 GB/s at these speeds, against a theoretical 34 GB/s for dual-channel DDR4-2133. Qwen3 1.7B (a 1.36 GB blob in Ollama, listed as 1.4 GB) moves about 23-27 GB/s on the same box. That points at the four cores, not memory bandwidth, as Bonsai's limit here.
+- The use-case test has 8 tasks per use case, run once per model, so one task is 12.5 points of a use case. Read the per-use-case numbers as rough.
+- The use-case rules check what a script can check. They don't judge whether a story is any good, and a summary can pass while leaving out something a person would mention.
+- Bonsai often copied the `/no_think` tag from the prompt onto the end of its answer. The scorer removes that tag for every model; it never decided a verdict in these runs.
+- In the Qwen3 1.7B use-case run on the NAS, one request (`s3`) failed when Ollama's model runner was killed at the container's 3 GB memory cap. Qwen3 1.7B at 8K context plus an embedding model in the same Ollama is a tight fit in 3 GB. That task was re-run once; the first attempt is in `results/raw/usecases-nas-qwen3-1.7b.first-attempt.jsonl`.
 - Node's built-in `fetch` gives up when response headers take more than 5 minutes. My first stress run died on that during the 4,096-token prompt, which is why the scripts send their requests with `node:http` and explicit timeouts (only the short streaming test still uses `fetch`), and why the stress file is `stress2.jsonl`.
 
 ## PrismML's numbers, for context
@@ -209,6 +300,20 @@ BACKEND=openai BASE=http://127.0.0.1:1234 MODEL=qwen/qwen3-8b LABEL="Qwen3 8B Q4
 BACKEND=ollama BASE=http://127.0.0.1:11434 MODEL=qwen3:1.7b LABEL="Qwen3 1.7B Q4_K_M" node scripts/eval.js | tee qwen-eval.jsonl
 ```
 
+The use-case test needs Node 18 or newer for the runner and Docker for the scorer, which runs the model's code in a sandbox. Run from the repo root:
+
+```sh
+# one model's answers (BACKEND, BASE, MODEL, LABEL and NOTHINK work as for eval.js)
+BACKEND=openai BASE=http://127.0.0.1:8080 LABEL="Bonsai-8B Q1_0" NOTHINK=1 node scripts/usecases/run.js > bonsai-usecases.jsonl
+# score them
+sh scripts/usecases/score.sh scripts/usecases/tasks.json bonsai-usecases.jsonl > bonsai-usecases-scores.jsonl
+# check the scorer itself
+sh scripts/usecases/score.sh --selftest scripts/usecases/tasks.json
+sh scripts/usecases/score.sh --cases scripts/usecases/tasks.json scripts/usecases/scorer-cases.json
+```
+
+The tasks live in `scripts/usecases/make_tasks.py`, which writes `tasks.json`; change them there.
+
 Environment variables:
 
 | Script | Variable | Default | Meaning |
@@ -228,6 +333,10 @@ Environment variables:
 | eval.js | `NOTHINK` | off | `1` adds Qwen3's thinking-off switches |
 | eval.js | `MAXTOK` | `512` | output token cap |
 | eval.js | `API_KEY` | empty | sent as a Bearer token if set |
+| usecases/run.js | `BACKEND`, `BASE`, `MODEL`, `LABEL`, `NOTHINK` | as for eval.js | |
+| usecases/run.js | `ONLY` | empty | comma-separated task ids to run, for example `c1,g3` |
+| usecases/run.js | `TASKS_FILE` | `scripts/usecases/tasks.json` | another task file |
+| usecases/run.js | `ACTIVITY_URL` | empty | optional: a URL returning `{"inflight": n, "idleSec": n}`; the run waits while it reports activity |
 
 Run the scripts from a machine or container that can reach the server. To keep a server off the network the way I did, run the scripts in a container on the same private Docker network, for example `docker run --rm --network llm-net -v "$PWD":/w -w /w -e LLAMA_URL=http://bonsai:8080 node:20 node scripts/bench.js`.
 
@@ -241,6 +350,14 @@ Run the scripts from a machine or container that can reach the server. To keep a
 - `results/raw/stress2.jsonl`: the stress run (long prompt, four at once, sustained) with host memory readings.
 - `results/raw/bonsai-eval.jsonl`, `results/raw/qwen-eval.jsonl`: 36-task runs on the NAS.
 - `results/raw/mac-eval.jsonl`: 36-task runs on the Mac, seven models.
+- `scripts/usecases/make_tasks.py`: the 48 use-case tasks, each with a reference answer and wrong answers; writes `tasks.json`.
+- `scripts/usecases/tasks.json`: the tasks and their rules, as data.
+- `scripts/usecases/run.js`: runs one model through the tasks.
+- `scripts/usecases/score.py` and `score.sh`: the scorer and the container it runs in.
+- `scripts/usecases/scorer-cases.json`: answers written in other formats, each with the verdict it should get.
+- `results/usecases.json`: the use-case summary used in the write-up.
+- `results/raw/usecases-*.jsonl`: the nine use-case runs, with full answers, timings and each answer's verdict and reason.
+- `images/`: the two results images.
 
 ## Links
 
